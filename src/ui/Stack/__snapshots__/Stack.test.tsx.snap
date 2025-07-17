@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScouterStack renders children and applies row direction and gap 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "width": "auto",
+    }
+  }
+>
+  <Text>
+    Hello
+  </Text>
+  <Text>
+    HI
+  </Text>
+</View>
+`;
