@@ -19,15 +19,14 @@ import ScouterUIProvider from "../../ScouterUIProvider";
 import Checkbox from ".";
 
 describe("Checkbox", () => {
-    it("renders unchecked by default", () => {
-        const onPress = jest.fn()
-        const { getByTestId } = render(
-            <ScouterUIProvider>
-                <Checkbox onPress={onPress} />
-            </ScouterUIProvider>,
-        );
-        const button = getByTestId("checkbox-default");
-        expect(button.props.accessibilityState?.checked).toBe(false);
-    });
-
+	it("renders unchecked by default", () => {
+		const onPress = jest.fn();
+		const { getByTestId } = render(
+			<ScouterUIProvider>
+				<Checkbox onPress={onPress} />
+			</ScouterUIProvider>,
+		);
+		const button = getByTestId("checkbox-default");
+		expect(button.props.accessibilityState?.checked).toBe(false);
+	});
 });

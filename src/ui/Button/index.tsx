@@ -21,7 +21,6 @@ import { Pressable, type PressableProps, type StyleProp, Text, type ViewStyle } 
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import type { UITheme } from "../../ScouterUi.types";
 
-
 export interface ButtonProps extends PressableProps {
 	children: string;
 	variant?: "solid" | "outline";
@@ -57,7 +56,7 @@ const Button: React.FC<ButtonProps> = ({
 			backgroundColor={backgroundColor}
 			borderColor={borderColor}
 			onPressIn={() => {
-				scale.value = withSpring(0.90, { stiffness: 200 });
+				scale.value = withSpring(0.9, { stiffness: 200 });
 			}}
 			onPressOut={() => {
 				scale.value = withSpring(1, { stiffness: 200 });
@@ -66,11 +65,11 @@ const Button: React.FC<ButtonProps> = ({
 			style={[animatedStyle, style]}
 		>
 			<ButtonText textColor={textColor}>{children}</ButtonText>
-		</AnimatedPressable >
+		</AnimatedPressable>
 	);
 };
 
-const BaseButton = styled(Pressable) <{
+const BaseButton = styled(Pressable)<{
 	backgroundColor: string;
 	borderColor: string;
 }>`
@@ -86,7 +85,7 @@ const BaseButton = styled(Pressable) <{
 
 const AnimatedPressable = Animated.createAnimatedComponent(BaseButton);
 
-const ButtonText = styled(Text) <{
+const ButtonText = styled(Text)<{
 	textColor: string;
 }>`
     font-size: 16px;

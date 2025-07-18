@@ -18,16 +18,16 @@ import Heading from "../Heading";
 import type { ScouterSizeKey } from "../ScouterDictionaries";
 
 interface TextFieldHelperProps {
-    children: React.ReactNode;
-    labelSize: ScouterSizeKey;
+	children: React.ReactNode;
+	labelSize: ScouterSizeKey;
 }
 
 const TextFieldHelper: React.FC<TextFieldHelperProps> = ({ children, labelSize }) => {
-    return (
-        <Heading size={labelSize} color={"gray.500"}>
-            {children}
-        </Heading>
-    );
+	return (
+		<Heading size={labelSize} color={"gray.500"}>
+			{children}
+		</Heading>
+	);
 };
 
 export default TextFieldHelper;

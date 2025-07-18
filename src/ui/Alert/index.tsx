@@ -22,95 +22,100 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import type { UITheme } from "../../ScouterUi.types";
 
 interface AlertProps {
-    label: string;
-    duration: number;
-    alertRole: "warning" | "success" | "danger" | "info";
-    onRemove: () => void;
+	label: string;
+	duration: number;
+	alertRole: "warning" | "success" | "danger" | "info";
+	onRemove: () => void;
 }
 
-const Alert: React.FC<AlertProps> = ({ label = "This is alert", duration = 3000, alertRole: role = "info", onRemove }) => {
-    const [timeRemaining, setTimeRemaining] = useState(duration);
-    const theme = useTheme() as UITheme;
+const Alert: React.FC<AlertProps> = ({
+	label = "This is alert",
+	duration = 3000,
+	alertRole: role = "info",
+	onRemove,
+}) => {
+	const [timeRemaining, setTimeRemaining] = useState(duration);
+	const theme = useTheme() as UITheme;
 
-    const getRoleIcon = (role: string): "dangerous" | "check" | "info-outline" | "warning-amber" => {
-        switch (role) {
-            case "danger":
-                return "dangerous";
-            case "warning":
-                return "warning-amber";
-            case "success":
-                return "check";
-            case "info":
-            default:
-                return "info-outline";
-        }
-    };
+	const getRoleIcon = (role: string): "dangerous" | "check" | "info-outline" | "warning-amber" => {
+		switch (role) {
+			case "danger":
+				return "dangerous";
+			case "warning":
+				return "warning-amber";
+			case "success":
+				return "check";
+			case "info":
+			default:
+				return "info-outline";
+		}
+	};
 
-    const getRoleColors = (role: string) => {
-        switch (role) {
-            case "danger":
-                return {
-                    backgroundColor: theme.colors.red[100],
-                    borderColor: theme.colors.red[500],
-                    textColor: theme.colors.red[700],
-                };
-            case "warning":
-                return {
-                    backgroundColor: theme.colors.yellow[100],
-                    borderColor: theme.colors.yellow[500],
-                    textColor: theme.colors.yellow[700],
-                };
-            case "success":
-                return {
-                    backgroundColor: theme.colors.green[100],
-                    borderColor: theme.colors.green[500],
-                    textColor: theme.colors.green[700],
-                };
-            case "info":
-            default:
-                return {
-                    backgroundColor: theme.colors.blue[100],
-                    borderColor: theme.colors.blue[500],
-                    textColor: theme.colors.blue[700],
-                };
-        }
-    };
+	const getRoleColors = (role: string) => {
+		switch (role) {
+			case "danger":
+				return {
+					backgroundColor: theme.colors.red[100],
+					borderColor: theme.colors.red[500],
+					textColor: theme.colors.red[700],
+				};
+			case "warning":
+				return {
+					backgroundColor: theme.colors.yellow[100],
+					borderColor: theme.colors.yellow[500],
+					textColor: theme.colors.yellow[700],
+				};
+			case "success":
+				return {
+					backgroundColor: theme.colors.green[100],
+					borderColor: theme.colors.green[500],
+					textColor: theme.colors.green[700],
+				};
+			case "info":
+			default:
+				return {
+					backgroundColor: theme.colors.blue[100],
+					borderColor: theme.colors.blue[500],
+					textColor: theme.colors.blue[700],
+				};
+		}
+	};
 
-    const colors = getRoleColors(role);
-    useEffect(() => {
-        if (timeRemaining === 0) {
-            const timeout = setTimeout(() => {
-                onRemove();
-            }, 1000);
-            return () => clearTimeout(timeout);
-        }
-        const interval = setInterval(() => {
-            setTimeRemaining((prev) => (prev > 0 ? prev - 1 : 0));
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [onRemove, timeRemaining]);
+	const colors = getRoleColors(role);
+	useEffect(() => {
+		if (timeRemaining === 0) {
+			const timeout = setTimeout(() => {
+				onRemove();
+			}, 1000);
+			return () => clearTimeout(timeout);
+		}
+		const interval = setInterval(() => {
+			setTimeRemaining((prev) => (prev > 0 ? prev - 1 : 0));
+		}, 1000);
+		return () => clearInterval(interval);
+	}, [onRemove, timeRemaining]);
 
-    return (
-        <AlertContainer
-            backgroundColor={colors.backgroundColor}
-            borderColor={colors.borderColor}
-            style={{
-                elevation: 5,
-                paddingHorizontal: 20,
-                paddingVertical: 16,
-                shadowColor: "#000",
-                shadowOffset: { height: 1, width: 0 },
-                shadowOpacity: 0.15,
-                shadowRadius: 3.84,
-            }}
-        >
-            <MaterialIcons name={getRoleIcon(role)} color={colors.textColor} size={24} style={css`margin-right: 10px`} />
-            <AlertText textColor={colors.textColor}>{label}</AlertText>
-        </AlertContainer>
-    );
+	return (
+		<AlertContainer
+			backgroundColor={colors.backgroundColor}
+			borderColor={colors.borderColor}
+			style={{
+				elevation: 5,
+				paddingHorizontal: 20,
+				paddingVertical: 16,
+				shadowColor: "#000",
+				shadowOffset: { height: 1, width: 0 },
+				shadowOpacity: 0.15,
+				shadowRadius: 3.84,
+			}}
+		>
+			<MaterialIcons name={getRoleIcon(role)} color={colors.textColor} size={24} style={css`margin-right: 10px`} />
+			<AlertText textColor={colors.textColor}>{label}</AlertText>
+		</AlertContainer>
+	);
 };
 
-const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: string }>`
+const AlertContainer = styled(View)<{ backgroundColor: string; borderColor: string }>`
     border-radius: 8px;
     background-color: ${(props) => props.backgroundColor};
     border-width: 1px;
@@ -125,7 +130,7 @@ const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: str
     bottom: 20px;
 `;
 
-const AlertText = styled(Text) <{ textColor: string }>`
+const AlertText = styled(Text)<{ textColor: string }>`
     font-size: 16px;
     font-weight: 600;
     color: ${(props) => props.textColor}

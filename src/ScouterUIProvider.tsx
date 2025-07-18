@@ -18,11 +18,11 @@ import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import ScouterUITheme from "./ScouterUITheme";
 
 type ScouterUIProviderProps = {
-    children: React.ReactNode;
-}
+	children: React.ReactNode;
+};
 
 const ScouterUIProvider = ({ children }: ScouterUIProviderProps) => {
-    return <EmotionThemeProvider theme={ScouterUITheme}>{children}</EmotionThemeProvider>
-}
+	return <EmotionThemeProvider theme={ScouterUITheme}>{children}</EmotionThemeProvider>;
+};
 
 export default ScouterUIProvider;

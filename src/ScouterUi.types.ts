@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from "react-native";
 
 export type OnLoadEventPayload = {
-  url: string;
+	url: string;
 };
 
 export type ScouterUiModuleEvents = {
-  onChange: (params: ChangeEventPayload) => void;
+	onChange: (params: ChangeEventPayload) => void;
 };
 
 export type ChangeEventPayload = {
-  value: string;
+	value: string;
 };
 
 export type ScouterUiViewProps = {
-  url: string;
-  onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
-  style?: StyleProp<ViewStyle>;
+	url: string;
+	onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
+	style?: StyleProp<ViewStyle>;
 };
-
 
 export type UITheme = {
 	colors: Record<string, Record<number | string, string>>;

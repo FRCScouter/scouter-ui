@@ -19,16 +19,16 @@ import Heading from "../Heading";
 import type { ScouterSizeKey } from "../ScouterDictionaries";
 
 interface TextFieldLabelProps {
-    children: React.ReactNode;
-    labelSize: ScouterSizeKey;
-    color: `${keyof UITheme["colors"]}.${number}`;
+	children: React.ReactNode;
+	labelSize: ScouterSizeKey;
+	color: `${keyof UITheme["colors"]}.${number}`;
 }
 const TextFieldLabel: React.FC<TextFieldLabelProps> = ({ children, color, labelSize }) => {
-    return (
-        <Heading size={labelSize} weight="bold" color={color}>
-            {children}
-        </Heading>
-    );
+	return (
+		<Heading size={labelSize} weight="bold" color={color}>
+			{children}
+		</Heading>
+	);
 };
 
 export default TextFieldLabel;

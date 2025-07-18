@@ -1,9 +1,9 @@
 {
-  "platforms": ["apple", "android", "web"],
-  "apple": {
-    "modules": ["ScouterUiModule"]
-  },
-  "android": {
-    "modules": ["expo.modules.scouterui.ScouterUiModule"]
-  }
+	"platforms": ["apple", "android", "web"],
+	"apple": {
+		"modules": ["ScouterUiModule"]
+	},
+	"android": {
+		"modules": ["expo.modules.scouterui.ScouterUiModule"]
+	}
 }

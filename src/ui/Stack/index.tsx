@@ -33,7 +33,11 @@ const Stack: React.FC<StackProps> = ({ direction, children, gap, ...rest }) => {
 		flex-direction: ${direction === "col" ? "column" : "row"};
 		gap: ${gap}px;
 	`;
-	return <View style={viewStyle} {...rest}>{children}</View>;
+	return (
+		<View style={viewStyle} {...rest}>
+			{children}
+		</View>
+	);
 };
 
 export default Stack;

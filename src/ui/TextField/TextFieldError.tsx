@@ -22,20 +22,20 @@ import Heading from "../Heading";
 import type { ScouterSizeKey } from "../ScouterDictionaries";
 
 interface TextFieldErrorProps {
-    children: React.ReactNode;
-    labelSize: ScouterSizeKey;
+	children: React.ReactNode;
+	labelSize: ScouterSizeKey;
 }
 
 const TextFieldError: React.FC<TextFieldErrorProps> = ({ children, labelSize }) => {
-    const theme = useTheme() as UITheme;
-    return (
-        <Container>
-            <MaterialIcons name="dangerous" size={18} color={theme.colors.red[500]} />
-            <Heading size={labelSize} weight="medium" color={"red.500"}>
-                {children}
-            </Heading>
-        </Container>
-    );
+	const theme = useTheme() as UITheme;
+	return (
+		<Container>
+			<MaterialIcons name="dangerous" size={18} color={theme.colors.red[500]} />
+			<Heading size={labelSize} weight="medium" color={"red.500"}>
+				{children}
+			</Heading>
+		</Container>
+	);
 };
 
 const Container = styled.View`

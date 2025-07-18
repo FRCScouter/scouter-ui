@@ -19,13 +19,13 @@ import ScouterUIProvider from "../../ScouterUIProvider";
 import Alert from "./index";
 
 it("renders correctly the alert", async () => {
-    const { getByText } = render(
-        <ScouterUIProvider>
-            <Alert alertRole="info" label="Hello" duration={5} onRemove={() => { }} />
-        </ScouterUIProvider>
-    );
+	const { getByText } = render(
+		<ScouterUIProvider>
+			<Alert alertRole="info" label="Hello" duration={5} onRemove={() => {}} />
+		</ScouterUIProvider>,
+	);
 
-    await waitFor(() => {
-        expect(getByText("Hello")).toBeTruthy();
-    });
+	await waitFor(() => {
+		expect(getByText("Hello")).toBeTruthy();
+	});
 });
