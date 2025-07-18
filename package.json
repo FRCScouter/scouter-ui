@@ -4,6 +4,7 @@
 		"url": "https://github.com/liorshap1/scouter-ui/issues"
 	},
 	"dependencies": {
+		"@babel/plugin-transform-logical-assignment-operators": "^7.27.1",
 		"@emotion/css": "^11.13.5",
 		"@emotion/native": "^11.11.0",
 		"@emotion/react": "^11.14.0",
