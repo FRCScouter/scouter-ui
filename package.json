@@ -55,7 +55,7 @@
     "open:ios": "xed example/ios",
     "prepare": "expo-module prepare",
     "prepublishOnly": "expo-module prepublishOnly",
-    "test": "vitest"
+    "test": "jest"
   },
   "types": "build/index.d.ts",
   "version": "0.1.0"

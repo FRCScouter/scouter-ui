@@ -1,35 +1,64 @@
-# scouter-ui
+<img src="assets/scouter-ui-banner.png" alt="Scouter UI Banner" width="100%">
 
-FRC Scouter UI
+# Scouter UI
 
-# API documentation
+A modern, customizable UI component library for React Native, designed to accelerate your app development with beautiful, accessible, and easy-to-use components. Built with Expo and TypeScript.
 
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/scouter-ui/)
-- [Documentation for the main branch](https://docs.expo.dev/versions/unversioned/sdk/scouter-ui/)
+## Features
 
-# Installation in managed Expo projects
+- ⚡️ Fast and lightweight
+- 🎨 Customizable themes
+- 🧩 Ready-to-use components (Button, Alert, Dialog, Checkbox, etc.)
+- 🛡️ TypeScript support
+- 📱 Works with Expo and React Native CLI
 
-For [managed](https://docs.expo.dev/archive/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+## Installation
 
-# Installation in bare React Native projects
+Using npm:
 
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
-
-### Add the package to your npm dependencies
-
-```
+```bash
 npm install scouter-ui
 ```
 
-### Configure for Android
+Or using yarn:
 
+```bash
+yarn add scouter-ui
+```
 
+## Usage
 
+Wrap your app with the `ScouterUIProvider` and start using components:
 
-### Configure for iOS
+```tsx
+import { ScouterUIProvider, Button } from "scouter-ui";
 
-Run `npx pod-install` after installing the npm package.
+export default function App() {
+  return (
+    <ScouterUIProvider>
+      <Button onPress={() => alert("Hello!")}>Click Me</Button>
+    </ScouterUIProvider>
+  );
+}
+```
 
-# Contributing
+## Documentation
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide]( https://github.com/expo/expo#contributing).
+- [Component Documentation](./src/ui/)
+- [Example App](./example/)
+
+## Contributing
+
+Contributions are welcome! Please open issues and pull requests for new features, bug fixes, or improvements.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+# ⚠ UNDER DEVELOPMENT
