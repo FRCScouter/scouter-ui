@@ -18,3 +18,4 @@ export { default as ScouterUIProvider } from "./ScouterUIProvider";
 // Reexport the native module. On web, it will be resolved to ScouterUiModule.web.ts
 // and on native platforms to ScouterUiModule.ts
 export * from "./ScouterUi.types";
+export * from "./ui";

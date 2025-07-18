@@ -1,5 +1,20 @@
-import { fireEvent, render } from "@testing-library/react-native";
-import React from "react";
+/**
+ * Copyright 2025 Lior Shaposhnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import ScouterUIProvider from "../../ScouterUIProvider";
 import TextField from ".";
 
@@ -22,14 +37,16 @@ describe("TextField", () => {
         expect(getByText("We'll never share your email.")).toBeTruthy();
     });
 
-    it("renders error and error icon if error is provided", () => {
-        const { getByText, getByTestId } = render(
+    it("renders error and error icon if error is provided", async () => {
+        const { getByText } = render(
             <ScouterUIProvider>
                 <TextField label="Password" value="" onTextChange={() => { }} error="Password is required" />
             </ScouterUIProvider>,
         );
-        expect(getByText("Password")).toBeTruthy();
-        expect(getByText("Password is required")).toBeTruthy();
+        await waitFor(() => {
+            expect(getByText("Password")).toBeTruthy();
+            expect(getByText("Password is required")).toBeTruthy();
+        })
     });
 
     it("calls onTextChange when input changes", () => {

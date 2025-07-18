@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { ScouterUIProvider } from "scouter-ui";
-import { ScouterAlert, ScouterButton, ScouterButtonGroup, ScouterHeading } from "scouter-ui/ui";
-import Checkbox from "scouter-ui/ui/Checkbox";
-import TextField from "scouter-ui/ui/TextField";
+import {
+	ScouterAlert,
+	ScouterButton,
+	ScouterButtonGroup,
+	ScouterCheckbox,
+	ScouterHeading,
+	ScouterInput,
+	ScouterUIProvider,
+} from "scouter-ui";
 
 const App = () => {
 	const [showAlert, setShowAlert] = useState(true);
@@ -36,8 +41,8 @@ const App = () => {
 						onRemove={() => setShowAlert(false)}
 					/>
 				)}
-				<TextField onTextChange={(value) => setText(value)} label="Email" value={text} helper="Hello world" />
-				<Checkbox color="blue.400" />
+				<ScouterInput onTextChange={(value) => setText(value)} label="Email" value={text} helper="Hello world" />
+				<ScouterCheckbox color="blue.500" size="3xl" rounded="100%" onPress={() => null} variant="outline" />
 			</View>
 		</ScouterUIProvider>
 	);

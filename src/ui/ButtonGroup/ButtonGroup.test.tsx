@@ -1,23 +1,129 @@
-import { render } from "@testing-library/react-native"
-import ScouterUIProvider from "../../ScouterUIProvider"
-import Button from "../Button"
-import ButtonGroup from "."
+/**
+ * Copyright 2025 Lior Shaposhnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-describe("ButtonGroup snapshot", () => {
-    it("matches snapshot with props and styles", () => {
-        const { toJSON } = render(
-            <ScouterUIProvider>
-                <ButtonGroup>
-                    <Button variant="solid" color="red">
-                        {"Hi"}
-                    </Button>
-                    <Button variant="solid" color="blue">
-                        {"Hello"}
-                    </Button>
-                </ButtonGroup>
-            </ScouterUIProvider>
-        )
+import { fireEvent, render } from "@testing-library/react-native";
+import ScouterUIProvider from "../../ScouterUIProvider";
+import Button from "../Button";
+import ButtonGroup from ".";
 
-        expect(toJSON()).toMatchSnapshot();
-    });
+it("renders buttons with correct labels", () => {
+    const { getByText } = render(
+        <ScouterUIProvider>
+            <ButtonGroup>
+                <Button variant="solid" color="blue">
+                    Hi
+                </Button>
+                <Button variant="solid" color="blue">
+                    Hello
+                </Button>
+            </ButtonGroup>
+        </ScouterUIProvider>,
+    );
+
+    expect(getByText("Hi")).toBeTruthy();
+    expect(getByText("Hello")).toBeTruthy();
 });
+
+it("calls onPress for each button individually", () => {
+    const onPress1 = jest.fn();
+    const onPress2 = jest.fn();
+    const { getByText } = render(
+        <ScouterUIProvider>
+            <ButtonGroup>
+                <Button variant="solid" color="blue" onPress={onPress1}>
+                    Hi
+                </Button>
+                <Button variant="solid" color="blue" onPress={onPress2}>
+                    Hello
+                </Button>
+            </ButtonGroup>
+        </ScouterUIProvider>,
+    );
+    fireEvent.press(getByText("Hi"));
+    expect(onPress1).toHaveBeenCalled();
+    expect(onPress2).not.toHaveBeenCalled();
+    fireEvent.press(getByText("Hello"));
+    expect(onPress2).toHaveBeenCalled();
+});
+
+it("renders disabled buttons correctly", () => {
+    const onPress = jest.fn();
+    const { getByText } = render(
+        <ScouterUIProvider>
+            <ButtonGroup>
+                <Button variant="solid" color="blue" disabled onPress={onPress}>
+                    Disabled
+                </Button>
+                <Button variant="solid" color="blue" onPress={onPress}>
+                    Enabled
+                </Button>
+            </ButtonGroup>
+        </ScouterUIProvider>,
+    );
+    fireEvent.press(getByText("Disabled"));
+    expect(onPress).not.toHaveBeenCalled();
+    fireEvent.press(getByText("Enabled"));
+    expect(onPress).toHaveBeenCalled();
+});
+
+it("applies border radius to first and last buttons", () => {
+    const { UNSAFE_getAllByType } = render(
+        <ScouterUIProvider>
+            <ButtonGroup>
+                <Button variant="solid" color="blue">
+                    First
+                </Button>
+                <Button variant="solid" color="blue">
+                    Middle
+                </Button>
+                <Button variant="solid" color="blue">
+                    Last
+                </Button>
+            </ButtonGroup>
+        </ScouterUIProvider>,
+    );
+    // Get all Button components
+    const buttons = UNSAFE_getAllByType(Button);
+    // Check style prop for border radius
+    const firstStyle = Array.isArray(buttons[0].props.style) ? buttons[0].props.style[1] : buttons[0].props.style;
+    const lastStyle = Array.isArray(buttons[2].props.style) ? buttons[2].props.style[1] : buttons[2].props.style;
+    expect(firstStyle.borderTopLeftRadius).toBe(15);
+    expect(firstStyle.borderBottomLeftRadius).toBe(15);
+    expect(lastStyle.borderTopRightRadius).toBe(15);
+    expect(lastStyle.borderBottomRightRadius).toBe(15);
+});
+
+it("ignores null and undefined children", () => {
+    const { getByText, queryByText } = render(
+        <ScouterUIProvider>
+            <ButtonGroup>
+                {null as any}
+                <Button variant="solid" color="blue">
+                    A
+                </Button>
+                {undefined as any}
+                <Button variant="solid" color="blue">
+                    B
+                </Button>
+            </ButtonGroup>
+        </ScouterUIProvider>,
+    );
+    expect(getByText("A")).toBeTruthy();
+    expect(getByText("B")).toBeTruthy();
+    expect(queryByText("null")).toBeNull();
+    expect(queryByText("undefined")).toBeNull();
+});
+

@@ -1,38 +1,33 @@
+/**
+ * Copyright 2025 Lior Shaposhnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { css } from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import { Text } from "react-native";
 import type { UITheme } from "../../ScouterUi.types";
-
-export type HeadingSizeKey = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
-
-const HeadingSize: Record<HeadingSizeKey, string> = {
-	"2xl": "30px",
-	"3xl": "36px",
-	"4xl": "48px",
-	"5xl": "60px",
-	"6xl": "72px",
-	lg: "20px",
-	md: "16px",
-	sm: "14px",
-	xl: "24px",
-	xs: "12px",
-};
-
-type FontWeightKey = "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black";
-
-const FontWeight: Record<FontWeightKey, string> = {
-	black: "900",
-	bold: "700",
-	extrabold: "800",
-	light: "300",
-	medium: "500",
-	normal: "400",
-	semibold: "600",
-};
+import {
+	ScouterFontWeight,
+	type ScouterFontWeightKey,
+	ScouterSizeDictionary,
+	type ScouterSizeKey,
+} from "../ScouterDictionaries";
 
 interface HeadingProps {
-	size?: HeadingSizeKey;
-	weight?: FontWeightKey;
+	size?: ScouterSizeKey;
+	weight?: ScouterFontWeightKey;
 	color?: `${keyof UITheme["colors"]}.${number}`;
 	children: React.ReactNode;
 }
@@ -49,8 +44,8 @@ const Heading: React.FC<HeadingProps> = ({ size = "md", weight = "normal", color
 
 	const textStyle = css`
     color: ${resolvedColor};
-    font-size: ${HeadingSize[size]};
-    font-weight: ${FontWeight[weight]};
+    font-size: ${ScouterSizeDictionary[size]};
+    font-weight: ${ScouterFontWeight[weight]};
   `;
 
 	return <Text style={textStyle}>{children}</Text>;
