@@ -18,12 +18,12 @@ import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import type { UITheme } from "../../ScouterUi.types";
-import type { HeadingSizeKey } from "../Heading";
 import Heading from "../Heading";
+import type { ScouterSizeKey } from "../ScouterDictionaries";
 
 interface TextFieldErrorProps {
     children: React.ReactNode;
-    labelSize: HeadingSizeKey;
+    labelSize: ScouterSizeKey;
 }
 
 const TextFieldError: React.FC<TextFieldErrorProps> = ({ children, labelSize }) => {

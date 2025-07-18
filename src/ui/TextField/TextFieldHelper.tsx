@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-import type { HeadingSizeKey } from "../Heading";
 import Heading from "../Heading";
+import type { ScouterSizeKey } from "../ScouterDictionaries";
 
 interface TextFieldHelperProps {
     children: React.ReactNode;
-    labelSize: HeadingSizeKey;
+    labelSize: ScouterSizeKey;
 }
 
 const TextFieldHelper: React.FC<TextFieldHelperProps> = ({ children, labelSize }) => {
-    return <Heading size={labelSize} color={"gray.500"}>{children}</Heading>;
+    return (
+        <Heading size={labelSize} color={"gray.500"}>
+            {children}
+        </Heading>
+    );
 };
 
 export default TextFieldHelper;
