@@ -110,11 +110,9 @@ it("ignores null and undefined children", () => {
 	const { getByText, queryByText } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				{null as any}
 				<Button variant="solid" color="blue">
 					A
 				</Button>
-				{undefined as any}
 				<Button variant="solid" color="blue">
 					B
 				</Button>

@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.28.0",
 		"@babel/preset-typescript": "^7.27.1",
-		"@biomejs/biome": "2.0.6",
+		"@biomejs/biome": "2.1.2",
 		"@testing-library/jest-native": "^5.4.3",
 		"@testing-library/react-native": "^13.2.0",
 		"@types/react": "~19.0.0",

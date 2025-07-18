@@ -45,7 +45,6 @@ const Alert: React.FC<AlertProps> = ({
 				return "warning-amber";
 			case "success":
 				return "check";
-			case "info":
 			default:
 				return "info-outline";
 		}
@@ -71,7 +70,6 @@ const Alert: React.FC<AlertProps> = ({
 					borderColor: theme.colors.green[500],
 					textColor: theme.colors.green[700],
 				};
-			case "info":
 			default:
 				return {
 					backgroundColor: theme.colors.blue[100],
@@ -115,7 +113,7 @@ const Alert: React.FC<AlertProps> = ({
 	);
 };
 
-const AlertContainer = styled(View)<{ backgroundColor: string; borderColor: string }>`
+const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: string }>`
     border-radius: 8px;
     background-color: ${(props) => props.backgroundColor};
     border-width: 1px;
@@ -130,7 +128,7 @@ const AlertContainer = styled(View)<{ backgroundColor: string; borderColor: stri
     bottom: 20px;
 `;
 
-const AlertText = styled(Text)<{ textColor: string }>`
+const AlertText = styled(Text) <{ textColor: string }>`
     font-size: 16px;
     font-weight: 600;
     color: ${(props) => props.textColor}
