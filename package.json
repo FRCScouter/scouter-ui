@@ -32,9 +32,6 @@
 		"vitest": "^3.2.4"
 	},
 	"homepage": "https://github.com/liorshap1/scouter-ui#readme",
-	"jest": {
-		"preset": "jest-expo"
-	},
 	"keywords": [
 		"react-native",
 		"expo",
