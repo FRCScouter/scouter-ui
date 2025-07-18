@@ -1,18 +1,19 @@
 // Made by WrathChaos
+/** biome-ignore-all lint/suspicious/noExplicitAny: <Global hook> */
 
 import { type SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 
-type Callback<T> = (value?: any) => void;
-type DispatchWithCallback<T> = (value: any, callback?: Callback<any>) => void;
+type Callback<_T> = (value?: any) => void;
+type DispatchWithCallback<_T> = (value: any, callback?: Callback<any>) => void;
 
-function useStateWithCallback<T>(initialState: any | (() => any)): [any, DispatchWithCallback<SetStateAction<any>>] {
-	const [state, _setState] = useState(initialState);
+function useStateWithCallback<_T>(initialState: any | (() => any)): [any, DispatchWithCallback<SetStateAction<any>>] {
+	const [state, _setState] = useState<any>(initialState);
 
-	const callbackRef = useRef<Callback<any>>();
+	const callbackRef = useRef<Callback<any> | undefined>(undefined);
 	const isFirstCallbackCall = useRef<boolean>(true);
 
 	const setState = useCallback((setStateAction: SetStateAction<any>, callback?: Callback<any>): void => {
-		callbackRef.current = callback;
+		callbackRef.current = callback ?? undefined;
 		_setState(setStateAction);
 	}, []);
 
