@@ -40,7 +40,12 @@ describe("TextField", () => {
 	it("renders error and error icon if error is provided", async () => {
 		const { getByText } = render(
 			<ScouterUIProvider>
-				<TextField label="Password" value="" onTextChange={() => {}} error="Password is required" />
+				<TextField
+					label="Password"
+					value=""
+					onTextChange={() => {}}
+					error="Password is required"
+				/>
 			</ScouterUIProvider>,
 		);
 		await waitFor(() => {
@@ -53,7 +58,11 @@ describe("TextField", () => {
 		const onTextChange = jest.fn();
 		const { getByPlaceholderText } = render(
 			<ScouterUIProvider>
-				<TextField placeholder="Type here" value="" onTextChange={onTextChange} />
+				<TextField
+					placeholder="Type here"
+					value=""
+					onTextChange={onTextChange}
+				/>
 			</ScouterUIProvider>,
 		);
 		fireEvent.changeText(getByPlaceholderText("Type here"), "hello");
@@ -63,7 +72,12 @@ describe("TextField", () => {
 	it("renders as disabled when disabled prop is true", () => {
 		const { getByPlaceholderText } = render(
 			<ScouterUIProvider>
-				<TextField placeholder="Disabled input" value="" onTextChange={() => {}} disabled />
+				<TextField
+					placeholder="Disabled input"
+					value=""
+					onTextChange={() => {}}
+					disabled
+				/>
 			</ScouterUIProvider>,
 		);
 		const input = getByPlaceholderText("Disabled input");

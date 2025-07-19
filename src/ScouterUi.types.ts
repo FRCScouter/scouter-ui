@@ -38,3 +38,5 @@ export type UITheme = {
 	colors: Record<string, Record<number | string, string>>;
 	breakpoints?: Record<string, string>;
 };
+
+export type ScouterUIThemeColor = `${keyof UITheme["colors"]}.${number}`;

@@ -24,7 +24,10 @@ interface TextFieldHelperProps {
 
 const TextFieldHelper: React.FC<TextFieldHelperProps> = ({ children, labelSize }) => {
 	return (
-		<Heading size={labelSize} color={"gray.500"}>
+		<Heading
+			size={labelSize}
+			color={"gray.500"}
+		>
 			{children}
 		</Heading>
 	);

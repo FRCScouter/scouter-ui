@@ -15,40 +15,29 @@
  */
 
 import { css } from "@emotion/native";
-import { useTheme } from "@emotion/react";
-import { Text } from "react-native";
-import type { UITheme } from "../../ScouterUi.types";
-import {
-	ScouterFontWeight,
-	type ScouterFontWeightKey,
-	ScouterSizeDictionary,
-	type ScouterSizeKey,
-} from "../ScouterDictionaries";
+import { Text, type ViewStyle } from "react-native";
+import useResolveColor from "../../hooks/useResolveColor";
+import type { ScouterUIThemeColor } from "../../ScouterUi.types";
+import { ScouterFontWeight, type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
 
 interface HeadingProps {
 	size?: ScouterSizeKey;
 	weight?: ScouterFontWeightKey;
-	color?: `${keyof UITheme["colors"]}.${number}`;
+	color?: ScouterUIThemeColor;
 	children: React.ReactNode;
+	style?: ViewStyle;
 }
 
-const resolveColor = (theme: UITheme, colorKey: `${keyof UITheme["colors"]}.${number}`): string => {
-	const [colorBase, shade] = colorKey.split(".") as [keyof UITheme["colors"], string];
-	return theme.colors?.[colorBase]?.[shade] ?? "black";
-};
-
-const Heading: React.FC<HeadingProps> = ({ size = "md", weight = "normal", color = "blue.200", children }) => {
-	const theme = useTheme() as UITheme;
-
-	const resolvedColor = resolveColor(theme, color);
+const Heading: React.FC<HeadingProps> = ({ size = "md", weight = "normal", color = "black.50", children, style }) => {
+	const resolvedColor = useResolveColor(color);
 
 	const textStyle = css`
-    color: ${resolvedColor};
-    font-size: ${ScouterSizeDictionary[size]};
-    font-weight: ${ScouterFontWeight[weight]};
+		color: ${resolvedColor};
+		font-size: ${ScouterSizeDictionary[size]};
+		font-weight: ${ScouterFontWeight[weight]};
   `;
 
-	return <Text style={textStyle}>{children}</Text>;
+	return <Text style={[textStyle, style]}>{children}</Text>;
 };
 
 export default Heading;

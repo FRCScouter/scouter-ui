@@ -18,7 +18,6 @@ import { css } from "@emotion/native";
 import React from "react";
 import { View, type ViewStyle } from "react-native";
 import type { ButtonProps } from "../Button";
-import Stack from "../Stack";
 
 interface ButtonGroupProps {
 	children?: React.ReactElement<ButtonProps> | React.ReactElement<ButtonProps>[];
@@ -52,6 +51,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style }) => {
 			style={[
 				css`
 				display: flex;
+				flex-direction: row;
 				align-items: center;
 				justify-content: center;
 				border-radius: 15px;
@@ -60,9 +60,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style }) => {
 				style,
 			]}
 		>
-			<Stack direction="row" gap={0}>
-				{enhancedChildren}
-			</Stack>
+			{enhancedChildren}
 		</View>
 	);
 };

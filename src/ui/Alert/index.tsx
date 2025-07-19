@@ -28,12 +28,7 @@ interface AlertProps {
 	onRemove: () => void;
 }
 
-const Alert: React.FC<AlertProps> = ({
-	label = "This is alert",
-	duration = 3000,
-	alertRole: role = "info",
-	onRemove,
-}) => {
+const Alert: React.FC<AlertProps> = ({ label = "This is alert", duration = 3000, alertRole: role = "info", onRemove }) => {
 	const [timeRemaining, setTimeRemaining] = useState(duration);
 	const theme = useTheme() as UITheme;
 
@@ -107,13 +102,18 @@ const Alert: React.FC<AlertProps> = ({
 				shadowRadius: 3.84,
 			}}
 		>
-			<MaterialIcons name={getRoleIcon(role)} color={colors.textColor} size={24} style={css`margin-right: 10px`} />
+			<MaterialIcons
+				name={getRoleIcon(role)}
+				color={colors.textColor}
+				size={24}
+				style={css`margin-right: 10px`}
+			/>
 			<AlertText textColor={colors.textColor}>{label}</AlertText>
 		</AlertContainer>
 	);
 };
 
-const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: string }>`
+const AlertContainer = styled(View)<{ backgroundColor: string; borderColor: string }>`
     border-radius: 8px;
     background-color: ${(props) => props.backgroundColor};
     border-width: 1px;
@@ -128,7 +128,7 @@ const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: str
     bottom: 20px;
 `;
 
-const AlertText = styled(Text) <{ textColor: string }>`
+const AlertText = styled(Text)<{ textColor: string }>`
     font-size: 16px;
     font-weight: 600;
     color: ${(props) => props.textColor}

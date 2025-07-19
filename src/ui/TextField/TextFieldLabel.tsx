@@ -25,7 +25,11 @@ interface TextFieldLabelProps {
 }
 const TextFieldLabel: React.FC<TextFieldLabelProps> = ({ children, color, labelSize }) => {
 	return (
-		<Heading size={labelSize} weight="bold" color={color}>
+		<Heading
+			size={labelSize}
+			weight="bold"
+			color={color}
+		>
 			{children}
 		</Heading>
 	);

@@ -34,17 +34,7 @@ interface TextFieldProps {
 	disabled?: boolean;
 }
 
-const TextField: React.FC<TextFieldProps> = ({
-	label,
-	labelSize = "md",
-	required = false,
-	placeholder = "",
-	onTextChange,
-	value = "",
-	helper,
-	error,
-	disabled = false,
-}) => {
+const TextField: React.FC<TextFieldProps> = ({ label, labelSize = "md", required = false, placeholder = "", onTextChange, value = "", helper, error, disabled = false }) => {
 	const theme = useTheme() as UITheme;
 	const hasError = Boolean(error);
 
@@ -62,7 +52,10 @@ const TextField: React.FC<TextFieldProps> = ({
 	return (
 		<FieldContainer>
 			{label && (
-				<TextFieldLabel labelSize={labelSize} color={hasError ? "red.600" : "gray.700"}>
+				<TextFieldLabel
+					labelSize={labelSize}
+					color={hasError ? "red.600" : "gray.700"}
+				>
 					{label}
 					{required && <RequiredMark>*</RequiredMark>}
 				</TextFieldLabel>
@@ -104,12 +97,7 @@ const StyledTextInput = styled.TextInput<{
     padding-horizontal: 16px;
     border-radius: 10px;
     border-width: 2px;
-    border-color: ${(props) =>
-			props.hasError
-				? props.theme.colors.red[500]
-				: props.disabled
-					? props.theme.colors.gray[200]
-					: props.theme.colors.gray[300]};
+    border-color: ${(props) => (props.hasError ? props.theme.colors.red[500] : props.disabled ? props.theme.colors.gray[200] : props.theme.colors.gray[300])};
     background-color: ${(props) => (props.disabled ? props.theme.colors.gray[100] : props.theme.colors.white[50])};
     color: ${(props) => (props.disabled ? props.theme.colors.gray[400] : props.theme.colors.gray[900])};
     font-size: 16px;

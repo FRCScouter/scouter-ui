@@ -15,31 +15,34 @@
  */
 
 import { css } from "@emotion/native";
-import { useTheme } from "@emotion/react";
-import { useCallback, useEffect, useMemo } from "react";
-import { Pressable } from "react-native";
+import { useCallback, useMemo } from "react";
+import { Pressable, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from "react-native-reanimated";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+import useResolveColor from "../../hooks/useResolveColor";
 import useStateWithCallback from "../../hooks/useStateCallback";
-import type { UITheme } from "../../ScouterUi.types";
-import { ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import type { ScouterUIThemeColor } from "../../ScouterUi.types";
+import Heading from "../Heading";
+import { type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
 
-interface CheckboxProps {
+interface CheckboxLabelProps {
+	checkboxLabel?: string;
+	checkboxLabelColor?: ScouterUIThemeColor;
+	checkboxLabelFontWeight?: ScouterFontWeightKey;
+	checkboxLabelSize?: ScouterSizeKey;
+}
+
+interface CheckboxProps extends CheckboxLabelProps {
 	disabled?: boolean;
 	label?: string;
 	size?: ScouterSizeKey;
 	variant?: "outline" | "flat";
-	color?: `${keyof UITheme["colors"]}.${number}`;
+	color?: ScouterUIThemeColor;
 	onPress: (isChecked: boolean) => void;
 	useBuiltInState?: boolean;
 	isChecked?: boolean;
 	rounded?: string;
 }
-
-const resolveColor = (theme: UITheme, colorKey: `${keyof UITheme["colors"]}.${number}`): string => {
-	const [colorBase, shade] = colorKey.split(".") as [keyof UITheme["colors"], string];
-	return theme.colors?.[colorBase]?.[shade] ?? "black";
-};
 
 const Checkbox: React.FC<CheckboxProps> = ({
 	disabled = false,
@@ -51,10 +54,13 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	useBuiltInState = true,
 	isChecked = false,
 	rounded = "5px",
+	checkboxLabel,
+	checkboxLabelColor,
+	checkboxLabelFontWeight,
+	checkboxLabelSize,
 }) => {
-	const [checked, setChecked] = useStateWithCallback<boolean>(false);
-	const theme = useTheme() as UITheme;
-	const checkboxColor = useMemo(() => resolveColor(theme, color), [theme, color]);
+	const [checked, setChecked] = useStateWithCallback<boolean>(isChecked);
+	const checkboxColor = useResolveColor(color);
 	const checkboxSize = ScouterSizeDictionary[size];
 	const iconSize = useMemo(() => Number.parseInt(checkboxSize, 10), [checkboxSize]);
 	const iconScale = useSharedValue(1);
@@ -63,55 +69,73 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	const animatedIconStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconScale.value }] }));
 	const animatedBoxStyle = useAnimatedStyle(() => ({ transform: [{ scale: boxScale.value }] }));
 
-	useEffect(() => {
-		setChecked(isChecked);
-	}, [isChecked, setChecked]);
-
 	const onCheckboxPress = useCallback(() => {
 		if (useBuiltInState) {
 			setChecked(!checked, (newCheckedValue) => {
 				onPress?.(newCheckedValue);
-
 				iconScale.value = withSequence(withSpring(1.2, { damping: 5 }), withSpring(1));
-
-				// Animate box bounce
 				boxScale.value = withSequence(withSpring(0.9, { damping: 5 }), withSpring(1.05, { damping: 5 }), withSpring(1));
 			});
 		}
 	}, [onPress, useBuiltInState, checked, setChecked, boxScale, iconScale]);
 
 	return (
-		<Pressable
-			onPress={onCheckboxPress}
-			disabled={disabled}
-			id="pressable"
-			testID={label}
-			accessibilityLabel={label}
-			aria-checked={isChecked}
+		<View
+			style={css`
+			width: auto;
+			height: auto;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		`}
 		>
-			<Animated.View
-				style={[
-					css`
+			<Pressable
+				onPress={onCheckboxPress}
+				disabled={disabled}
+				id="pressable"
+				testID={label}
+				accessibilityLabel={label}
+				aria-checked={checked}
+			>
+				<Animated.View
+					style={[
+						css`
                         width: ${checkboxSize};
                         height: ${checkboxSize};
                         border-radius: ${rounded};
-                        border-width: ${variant === "outline" ? "2px" : "0px"};
-                        border-color: ${variant === "outline" ? checkboxColor : "transparent"};
-                        background-color: ${variant === "outline" ? "none" : checkboxColor};
+						border-width: 2px;
+                        border-color: ${checkboxColor};
+                        background-color: ${variant === "flat" ? (checked ? checkboxColor : "transparent") : "transparent"};
                         display: flex;
                         align-items: center;
                         justify-content: center;
             `,
-					animatedBoxStyle,
-				]}
-			>
-				{checked && (
-					<Animated.View style={animatedIconStyle}>
-						<FontAwesome6 name="check" color={variant === "flat" ? "#fff" : checkboxColor} size={iconSize / 2} />
-					</Animated.View>
-				)}
-			</Animated.View>
-		</Pressable>
+						animatedBoxStyle,
+					]}
+				>
+					{checked && (
+						<Animated.View style={animatedIconStyle}>
+							<FontAwesome6
+								name="check"
+								color={variant === "flat" ? "#fff" : checkboxColor}
+								size={iconSize / 2}
+							/>
+						</Animated.View>
+					)}
+				</Animated.View>
+			</Pressable>
+			{checkboxLabel && (
+				<Heading
+					style={{ marginLeft: 10 }}
+					color={checkboxLabelColor}
+					size={checkboxLabelSize}
+					weight={checkboxLabelFontWeight}
+				>
+					{checkboxLabel}
+				</Heading>
+			)}
+		</View>
 	);
 };
 export default Checkbox;

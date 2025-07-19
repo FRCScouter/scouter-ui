@@ -1,0 +1,45 @@
+import { useTheme } from "@emotion/react";
+import { ScouterUIThemeColor, UITheme } from "../ScouterUi.types";
+import { useMemo } from "react";
+import { Platform, ColorValue } from "react-native";
+
+/**
+ * React Native hook to resolve a theme color string like "blue.700" to its actual color value.
+ * Always returns a string for compatibility with UI libraries.
+ * Handles missing colors, malformed keys, and allows a custom fallback.
+ * Supports platform-specific colors and warns in development if the color is not valid.
+ *
+ * @param color - The color key, e.g. "blue.700" or just "blue".
+ * @param fallback - Fallback color if not found (default: "black").
+ * @param platformColors - Optional object for platform-specific overrides, e.g. { ios: 'red', android: 'blue' }
+ * @returns The resolved color as a string.
+ */
+const useResolveColor = (color: ScouterUIThemeColor | undefined, fallback: string = "black", platformColors?: Partial<Record<typeof Platform.OS, ColorValue>>): string => {
+	const theme = useTheme() as UITheme;
+
+	return useMemo(() => {
+		if (platformColors && platformColors[Platform.OS]) {
+			return String(platformColors[Platform.OS]!);
+		}
+		if (!color || typeof color !== "string") return fallback;
+		const [colorBase, shade] = color.split(".") as [keyof UITheme["colors"], string | undefined];
+		if (!theme.colors || !theme.colors[colorBase]) {
+			if (typeof __DEV__ !== "undefined" && __DEV__) {
+				console.warn(`[useResolveColor] Color base "${colorBase}" not found in theme. Returning fallback.`);
+			}
+			return fallback;
+		}
+		const resolvedShade = shade ?? "500";
+		const colorValue = theme.colors[colorBase]?.[resolvedShade];
+		if (!colorValue) {
+			if (typeof __DEV__ !== "undefined" && __DEV__) {
+				console.warn(`[useResolveColor] Shade "${resolvedShade}" for color "${colorBase}" not found in theme. Returning fallback.`);
+			}
+			return fallback;
+		}
+		// Always return a string for UI library compatibility
+		return String(colorValue);
+	}, [color, theme, fallback, platformColors]);
+};
+
+export default useResolveColor;

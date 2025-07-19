@@ -30,8 +30,16 @@ const TextFieldError: React.FC<TextFieldErrorProps> = ({ children, labelSize }) 
 	const theme = useTheme() as UITheme;
 	return (
 		<Container>
-			<MaterialIcons name="dangerous" size={18} color={theme.colors.red[500]} />
-			<Heading size={labelSize} weight="medium" color={"red.500"}>
+			<MaterialIcons
+				name="dangerous"
+				size={18}
+				color={theme.colors.red[500]}
+			/>
+			<Heading
+				size={labelSize}
+				weight="medium"
+				color={"red.500"}
+			>
 				{children}
 			</Heading>
 		</Container>

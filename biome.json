@@ -10,22 +10,42 @@
 		"enabled": true
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"includes": ["src/**/*.ts", "src/**/*.tsx"]
 	},
 	"formatter": {
+		"attributePosition": "multiline",
 		"enabled": true,
-		"indentStyle": "tab"
+		"formatWithErrors": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineEnding": "lf",
+		"lineWidth": 180
 	},
 	"javascript": {
 		"formatter": {
-			"lineWidth": 120,
-			"quoteStyle": "double"
+			"arrowParentheses": "always",
+			"bracketSameLine": false,
+			"bracketSpacing": true,
+			"jsxQuoteStyle": "double",
+			"lineWidth": 180,
+			"quoteProperties": "asNeeded",
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingCommas": "all"
 		}
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"correctness": {
+				"noEmptyPattern": "warn",
+				"noUnusedImports": "warn"
+			},
+			"recommended": true,
+			"style": {
+				"recommended": true
+			}
 		}
 	},
 	"vcs": {

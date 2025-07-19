@@ -32,7 +32,10 @@ describe("Heading Component", () => {
 	it("renders with custom size and weight", () => {
 		const { getByText } = render(
 			<ScouterUIProvider>
-				<Heading size="xl" weight="bold">
+				<Heading
+					size="xl"
+					weight="bold"
+				>
 					Big Bold Text
 				</Heading>
 			</ScouterUIProvider>,
@@ -44,7 +47,10 @@ describe("Heading Component", () => {
 	it("applies correct font size and weight (emotion class check)", () => {
 		const { toJSON } = render(
 			<ScouterUIProvider>
-				<Heading size="2xl" weight="black">
+				<Heading
+					size="2xl"
+					weight="black"
+				>
 					Styled Text
 				</Heading>
 			</ScouterUIProvider>,

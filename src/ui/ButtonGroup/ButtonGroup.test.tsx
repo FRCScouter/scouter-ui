@@ -23,10 +23,16 @@ it("renders buttons with correct labels", () => {
 	const { getByText } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					Hi
 				</Button>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					Hello
 				</Button>
 			</ButtonGroup>
@@ -43,10 +49,18 @@ it("calls onPress for each button individually", () => {
 	const { getByText } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				<Button variant="solid" color="blue" onPress={onPress1}>
+				<Button
+					variant="solid"
+					color="blue"
+					onPress={onPress1}
+				>
 					Hi
 				</Button>
-				<Button variant="solid" color="blue" onPress={onPress2}>
+				<Button
+					variant="solid"
+					color="blue"
+					onPress={onPress2}
+				>
 					Hello
 				</Button>
 			</ButtonGroup>
@@ -64,10 +78,19 @@ it("renders disabled buttons correctly", () => {
 	const { getByText } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				<Button variant="solid" color="blue" disabled onPress={onPress}>
+				<Button
+					variant="solid"
+					color="blue"
+					disabled
+					onPress={onPress}
+				>
 					Disabled
 				</Button>
-				<Button variant="solid" color="blue" onPress={onPress}>
+				<Button
+					variant="solid"
+					color="blue"
+					onPress={onPress}
+				>
 					Enabled
 				</Button>
 			</ButtonGroup>
@@ -83,13 +106,22 @@ it("applies border radius to first and last buttons", () => {
 	const { UNSAFE_getAllByType } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					First
 				</Button>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					Middle
 				</Button>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					Last
 				</Button>
 			</ButtonGroup>
@@ -110,10 +142,16 @@ it("ignores null and undefined children", () => {
 	const { getByText, queryByText } = render(
 		<ScouterUIProvider>
 			<ButtonGroup>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					A
 				</Button>
-				<Button variant="solid" color="blue">
+				<Button
+					variant="solid"
+					color="blue"
+				>
 					B
 				</Button>
 			</ButtonGroup>

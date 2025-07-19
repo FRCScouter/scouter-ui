@@ -29,14 +29,7 @@ export interface ButtonProps extends PressableProps {
 	style?: StyleProp<ViewStyle>;
 }
 
-const Button: React.FC<ButtonProps> = ({
-	variant = "solid",
-	disabled = false,
-	color = "blue",
-	children,
-	style,
-	...pressableProps
-}) => {
+const Button: React.FC<ButtonProps> = ({ variant = "solid", disabled = false, color = "blue", children, style, ...pressableProps }) => {
 	if (typeof children !== "string") {
 		throw new Error("Button children must be a string.");
 	}

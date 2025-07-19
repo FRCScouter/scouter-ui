@@ -7,6 +7,7 @@ import {
 	ScouterCheckbox,
 	ScouterHeading,
 	ScouterInput,
+	ScouterRadioButton,
 	ScouterUIProvider,
 } from "scouter-ui";
 
@@ -16,10 +17,10 @@ const App = () => {
 	return (
 		<ScouterUIProvider>
 			<View style={{ alignItems: "center", height: "100%", justifyContent: "center", padding: 10, width: "100%" }}>
-				<ScouterButton color="red" onPress={() => console.log("hello")}>
+				<ScouterButton color="blue" onPress={() => console.log("hello")}>
 					Press me
 				</ScouterButton>
-				<ScouterHeading color="black.0" size="3xl">
+				<ScouterHeading color="black.0" size="2xl">
 					Hello?
 				</ScouterHeading>
 				<ScouterButtonGroup>
@@ -36,13 +37,15 @@ const App = () => {
 				{showAlert && (
 					<ScouterAlert
 						label="This is info to check!"
-						alertRole="warning"
+						alertRole="success"
 						duration={5300}
 						onRemove={() => setShowAlert(false)}
 					/>
 				)}
 				<ScouterInput onTextChange={(value) => setText(value)} label="Email" value={text} helper="Hello world" />
-				<ScouterCheckbox color="blue.500" size="3xl" rounded="100%" onPress={() => null} variant="outline" />
+				<ScouterCheckbox color="blue.500" size="3xl" rounded="100%" onPress={(val) => console.log(val)} variant="outline" checkboxLabel="Hello" checkboxLabelColor="black.50" />
+				<View style={{ height: 20 }} />
+				<ScouterRadioButton onPress={(val) => console.log(val)} size="2xl" radioButtonLabel="Test" />
 			</View>
 		</ScouterUIProvider>
 	);
