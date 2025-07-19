@@ -19,6 +19,10 @@ import ScouterUIProvider from "../../ScouterUIProvider";
 import Button from "../Button";
 import ButtonGroup from ".";
 
+function findStyleWithKey(styles: any, key: string) {
+	return (Array.isArray(styles) ? styles : [styles]).find((s: any) => s && s[key] !== undefined);
+}
+
 it("renders buttons with correct labels", () => {
 	const { getByText } = render(
 		<ScouterUIProvider>
@@ -130,8 +134,8 @@ it("applies border radius to first and last buttons", () => {
 	// Get all Button components
 	const buttons = UNSAFE_getAllByType(Button);
 	// Check style prop for border radius
-	const firstStyle = Array.isArray(buttons[0].props.style) ? buttons[0].props.style[1] : buttons[0].props.style;
-	const lastStyle = Array.isArray(buttons[2].props.style) ? buttons[2].props.style[1] : buttons[2].props.style;
+	const firstStyle = findStyleWithKey(buttons[0].props.style[0][1], "borderTopLeftRadius");
+	const lastStyle = findStyleWithKey(buttons[2].props.style[0][1], "borderTopRightRadius");
 	expect(firstStyle.borderTopLeftRadius).toBe(15);
 	expect(firstStyle.borderBottomLeftRadius).toBe(15);
 	expect(lastStyle.borderTopRightRadius).toBe(15);

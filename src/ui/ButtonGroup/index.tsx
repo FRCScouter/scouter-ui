@@ -16,15 +16,17 @@
 
 import { css } from "@emotion/native";
 import React from "react";
-import { View, type ViewStyle } from "react-native";
+import type { ViewStyle } from "react-native";
 import type { ButtonProps } from "../Button";
+import Stack from "../Stack";
 
 interface ButtonGroupProps {
 	children?: React.ReactElement<ButtonProps> | React.ReactElement<ButtonProps>[];
 	style?: ViewStyle;
+	direction?: "row" | "column";
 }
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style = undefined, direction = 'row' }) => {
 	// Filter out null/undefined children to prevent errors
 	const childrenArray = React.Children.toArray(children).filter(Boolean) as React.ReactElement<ButtonProps>[];
 
@@ -32,36 +34,35 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style }) => {
 		const isFirst = index === 0;
 		const isLast = index === childrenArray.length - 1;
 
-		const borderRadiusStyle = {
+		const rowborderRadiusStyle: ViewStyle = {
 			borderBottomLeftRadius: isFirst ? 15 : 0,
 			borderBottomRightRadius: isLast ? 15 : 0,
 			borderTopLeftRadius: isFirst ? 15 : 0,
 			borderTopRightRadius: isLast ? 15 : 0,
 		};
 
+		const columnBorderRadiusStyle: ViewStyle = {
+			borderBottomLeftRadius: isFirst ? 0 : 0,
+			borderBottomRightRadius: isLast ? 0 : 0,
+			borderTopLeftRadius: isFirst ? 0 : 0,
+			borderTopRightRadius: isLast ? 0 : 0,
+		}
+
 		// Merge existing style with borderRadiusStyle
 		const existingStyle = child.props.style ?? {};
 		return React.cloneElement(child, {
-			style: [existingStyle, borderRadiusStyle],
+			style: [existingStyle, direction === "column" ? columnBorderRadiusStyle : rowborderRadiusStyle],
 		});
 	});
 
 	return (
-		<View
-			style={[
-				css`
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: center;
-				border-radius: 15px;
-				overflow: hidden;
-        `,
-				style,
-			]}
+		<Stack
+			gap="none"
+			direction={direction}
+			style={[css`overflow: hidden; border-radius: 15px;`, style || {}]}
 		>
 			{enhancedChildren}
-		</View>
+		</Stack>
 	);
 };
 
