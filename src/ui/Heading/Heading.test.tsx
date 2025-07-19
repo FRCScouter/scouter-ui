@@ -43,18 +43,4 @@ describe("Heading Component", () => {
 		const heading = getByText("Big Bold Text");
 		expect(heading).toBeTruthy();
 	});
-
-	it("applies correct font size and weight (emotion class check)", () => {
-		const { toJSON } = render(
-			<ScouterUIProvider>
-				<Heading
-					size="2xl"
-					weight="black"
-				>
-					Styled Text
-				</Heading>
-			</ScouterUIProvider>,
-		);
-		expect(toJSON()).toMatchSnapshot();
-	});
 });

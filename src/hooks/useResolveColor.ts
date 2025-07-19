@@ -1,7 +1,7 @@
 import { useTheme } from "@emotion/react";
-import { ScouterUIThemeColor, UITheme } from "../ScouterUi.types";
 import { useMemo } from "react";
-import { Platform, ColorValue } from "react-native";
+import { type ColorValue, Platform } from "react-native";
+import type { ScouterUIThemeColor, UITheme } from "../ScouterUi.types";
 
 /**
  * React Native hook to resolve a theme color string like "blue.700" to its actual color value.
@@ -18,8 +18,8 @@ const useResolveColor = (color: ScouterUIThemeColor | undefined, fallback: strin
 	const theme = useTheme() as UITheme;
 
 	return useMemo(() => {
-		if (platformColors && platformColors[Platform.OS]) {
-			return String(platformColors[Platform.OS]!);
+		if (platformColors?.[Platform.OS]) {
+			return String(platformColors[Platform.OS]);
 		}
 		if (!color || typeof color !== "string") return fallback;
 		const [colorBase, shade] = color.split(".") as [keyof UITheme["colors"], string | undefined];
