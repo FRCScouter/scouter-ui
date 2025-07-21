@@ -14,76 +14,94 @@
  * limitations under the License.
  */
 
-import styled from "@emotion/native";
-import { useTheme } from "@emotion/react";
-import type React from "react";
-import { Pressable, type PressableProps, type StyleProp, Text, type ViewStyle } from "react-native";
+import { css } from "@emotion/native";
+import { Pressable, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
-import type { UITheme } from "../../ScouterUi.types";
+import useResolveColor from "../../hooks/useResolveColor";
+import type { ScouterUIThemeColor } from "../../ScouterUi.types";
+import Heading from "../Heading";
+import type { ScouterFontWeightKey, ScouterSizeKey } from "../ScouterDictionaries";
+import Stack from "../Stack";
 
-export interface ButtonProps extends PressableProps {
-	children: string;
-	variant?: "solid" | "outline";
-	disabled?: boolean;
-	color?: keyof UITheme["colors"];
-	style?: StyleProp<ViewStyle>;
+interface ButtonLabelProps {
+	buttonLabelWeight?: ScouterFontWeightKey;
+	buttonLabelColor?: ScouterUIThemeColor;
+	buttonLabelSize?: ScouterSizeKey;
 }
 
-const Button: React.FC<ButtonProps> = ({ variant = "solid", disabled = false, color = "blue", children, style, ...pressableProps }) => {
-	if (typeof children !== "string") {
-		throw new Error("Button children must be a string.");
-	}
-	const theme = useTheme() as UITheme;
-	const backgroundColor = variant === "solid" ? (disabled ? "#ccc" : theme.colors[color][500]) : "transparent";
-	const borderColor = variant === "outline" ? (disabled ? "#aaa" : theme.colors[color][600]) : "transparent";
-	const textColor = variant === "solid" ? "#fff" : disabled ? "#aaa" : theme.colors[color][600];
-	const scale = useSharedValue(1);
+interface ButtonProps extends ButtonLabelProps, PressableProps {
+	Icon?: React.ReactElement;
+	color?: ScouterUIThemeColor;
+	children?: React.ReactNode;
+	style?: StyleProp<ViewStyle>;
+	variant?: "solid" | "outline";
+	disabled?: boolean;
+}
 
-	const animatedStyle = useAnimatedStyle(() => ({
-		transform: [{ scale: scale.value }],
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const Button: React.FC<ButtonProps> = (props) => {
+	const {
+		color = "blue.500",
+		children,
+		style,
+		variant = "solid",
+		disabled = false,
+		buttonLabelColor,
+		buttonLabelSize,
+		buttonLabelWeight,
+		Icon,
+		...rest
+	} = props;
+
+	const resolvedColor = useResolveColor(color);
+	const backgroundColor = variant === "solid" ? (disabled ? "#ccc" : resolvedColor) : "transparent";
+	const borderColor = variant === "outline" ? (disabled ? "#aaa" : resolvedColor) : "transparent";
+	const textColor = variant === "solid" ? "white.50" : disabled ? "gray.200" : buttonLabelColor;
+	const buttonScale = useSharedValue(1);
+
+	const animatedButtonStyle = useAnimatedStyle(() => ({
+		transform: [{ scale: buttonScale.value }],
 	}));
 
 	return (
 		<AnimatedPressable
+			{...rest}
 			disabled={disabled}
-			backgroundColor={backgroundColor}
-			borderColor={borderColor}
 			onPressIn={() => {
-				scale.value = withSpring(0.9, { stiffness: 200 });
+				buttonScale.value = withSpring(0.9, { stiffness: 200 });
 			}}
 			onPressOut={() => {
-				scale.value = withSpring(1, { stiffness: 200 });
+				buttonScale.value = withSpring(1, { stiffness: 200 });
 			}}
-			{...pressableProps}
-			style={[animatedStyle, style]}
+			style={[
+				css`
+					background-color: ${backgroundColor};
+					border-color: ${borderColor};
+					border-width: 2px;
+					padding-vertical: 12px;
+					padding-horizontal: 16px;
+					border-radius: 8px;
+					align-items: center;
+					justify-content: center;
+					display: flex;
+				`,
+				animatedButtonStyle,
+				style,
+			]}
 		>
-			<ButtonText textColor={textColor}>{children}</ButtonText>
+			<Stack gap="sm">
+				{Icon && Icon}
+				{children && (
+					<Heading
+						color={textColor}
+						size={buttonLabelSize}
+						weight={buttonLabelWeight}
+					>
+						{children}
+					</Heading>
+				)}
+			</Stack>
 		</AnimatedPressable>
 	);
 };
-
-const BaseButton = styled(Pressable)<{
-	backgroundColor: string;
-	borderColor: string;
-}>`
-    padding-vertical: 12px;
-    padding-horizontal: 16px;
-    border-radius: 8px;
-    align-items: center;
-    justify-content: center;
-    background-color: ${(props) => props.backgroundColor};
-    border-width: 2px;
-    border-color: ${(props) => props.borderColor};
-`;
-
-const AnimatedPressable = Animated.createAnimatedComponent(BaseButton);
-
-const ButtonText = styled(Text)<{
-	textColor: string;
-}>`
-    font-size: 16px;
-    font-weight: 600;
-    color: ${(props) => props.textColor};
-`;
-
 export default Button;

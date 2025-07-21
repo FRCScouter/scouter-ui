@@ -26,7 +26,7 @@ interface ButtonGroupProps {
 	direction?: "row" | "column";
 }
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style = undefined, direction = 'row' }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style = undefined, direction = "row" }) => {
 	// Filter out null/undefined children to prevent errors
 	const childrenArray = React.Children.toArray(children).filter(Boolean) as React.ReactElement<ButtonProps>[];
 
@@ -46,7 +46,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ children, style = undefined, 
 			borderBottomRightRadius: isLast ? 0 : 0,
 			borderTopLeftRadius: isFirst ? 0 : 0,
 			borderTopRightRadius: isLast ? 0 : 0,
-		}
+		};
 
 		// Merge existing style with borderRadiusStyle
 		const existingStyle = child.props.style ?? {};

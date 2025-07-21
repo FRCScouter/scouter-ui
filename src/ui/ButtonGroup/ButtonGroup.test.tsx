@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/** biome-ignore-all lint/suspicious/noExplicitAny: <Test> */
 
 import { fireEvent, render } from "@testing-library/react-native";
 import ScouterUIProvider from "../../ScouterUIProvider";
@@ -29,13 +30,13 @@ it("renders buttons with correct labels", () => {
 			<ButtonGroup>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					Hi
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					Hello
 				</Button>
@@ -55,14 +56,14 @@ it("calls onPress for each button individually", () => {
 			<ButtonGroup>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 					onPress={onPress1}
 				>
 					Hi
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 					onPress={onPress2}
 				>
 					Hello
@@ -84,7 +85,7 @@ it("renders disabled buttons correctly", () => {
 			<ButtonGroup>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 					disabled
 					onPress={onPress}
 				>
@@ -92,7 +93,7 @@ it("renders disabled buttons correctly", () => {
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 					onPress={onPress}
 				>
 					Enabled
@@ -112,19 +113,19 @@ it("applies border radius to first and last buttons", () => {
 			<ButtonGroup>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					First
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					Middle
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					Last
 				</Button>
@@ -148,13 +149,13 @@ it("ignores null and undefined children", () => {
 			<ButtonGroup>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					A
 				</Button>
 				<Button
 					variant="solid"
-					color="blue"
+					color="blue.500"
 				>
 					B
 				</Button>

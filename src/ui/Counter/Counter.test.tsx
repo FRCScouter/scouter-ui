@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-import { render } from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
+import React from "react";
 import ScouterUIProvider from "../../ScouterUIProvider";
-import RadioButton from ".";
+import Counter from ".";
 
-describe("RadioButton component", () => {
-	it("Renders correctly", () => {
-		const onPress = jest.fn();
-		const { getByTestId } = render(
-			<ScouterUIProvider>
-				<RadioButton onPress={onPress} />
-			</ScouterUIProvider>,
-		);
+describe("Counter", () => {
+    it("renders correctly", async () => {
+        const { getByText } = render(
+            <ScouterUIProvider>
+                <Counter />
+            </ScouterUIProvider>,
+        );
 
-		const button = getByTestId("radio-button-default");
-		expect(button.props.accessibilityState?.checked).toBe(false);
-	});
+        await waitFor(() => {
+            expect(getByText("0")).toBeTruthy();
+        });
+    });
+
 });
+

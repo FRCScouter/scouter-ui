@@ -20,7 +20,7 @@
 		"indentStyle": "tab",
 		"indentWidth": 4,
 		"lineEnding": "lf",
-		"lineWidth": 180
+		"lineWidth": 100
 	},
 	"javascript": {
 		"formatter": {
@@ -28,7 +28,7 @@
 			"bracketSameLine": false,
 			"bracketSpacing": true,
 			"jsxQuoteStyle": "double",
-			"lineWidth": 180,
+			"lineWidth": 130,
 			"quoteProperties": "asNeeded",
 			"quoteStyle": "double",
 			"semicolons": "always",

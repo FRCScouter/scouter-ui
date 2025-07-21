@@ -1,12 +1,29 @@
+/**
+ * Copyright 2025 Lior Shaposhnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { css } from "@emotion/native";
 import { useCallback } from "react";
-import { Pressable, View } from "react-native";
+import { Pressable } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from "react-native-reanimated";
 import useResolveColor from "../../hooks/useResolveColor";
 import useStateWithCallback from "../../hooks/useStateCallback";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Heading from "../Heading";
 import { type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import Stack from "../Stack";
 
 interface RadioButtonLabelProps {
 	radioButtonLabel?: string;
@@ -38,6 +55,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
 	const [checked, setChecked] = useStateWithCallback<boolean>(isChecked);
 	const radioButtonScale = useSharedValue(1);
+	const innerRadioButtonScale = useSharedValue(1)
 
 	const radioButtonColor = useResolveColor(color);
 	const radioButtonSize = ScouterSizeDictionary[size];
@@ -45,23 +63,20 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 	const animatedRadioButtonStyle = useAnimatedStyle(() => ({
 		transform: [{ scale: radioButtonScale.value }],
 	}));
+	const animatedInnerRadioButtonStyle = useAnimatedStyle(() => ({
+		transform: [{ scale: innerRadioButtonScale.value }]
+	}))
 
 	const onRadioButtonPress = useCallback(() => {
 		setChecked(!checked, (newValue) => {
 			onPress?.(newValue);
 			radioButtonScale.value = withSequence(withSpring(0.9, { damping: 5 }), withSpring(1.05, { damping: 5 }), withSpring(1));
+			innerRadioButtonScale.value = withSequence(withSpring(0.9, { damping: 5 }), withSpring(1.05, { damping: 5 }), withSpring(1));
 		});
-	}, [onPress, setChecked, checked, radioButtonScale]);
+	}, [onPress, setChecked, checked, radioButtonScale, innerRadioButtonScale]);
 
 	return (
-		<View
-			style={css`
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-        `}
-		>
+		<Stack direction="row" gap="sm">
 			<Pressable
 				onPress={onRadioButtonPress}
 				disabled={disabled}
@@ -85,13 +100,13 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 					]}
 				>
 					{checked && (
-						<View
-							style={css`
-                                height: 50%;
-                                width: 50%;
+						<Animated.View
+							style={[css`
+                                height: 70%;
+                                width: 70%;
                                 border-radius: 100%;
                                 background-color: ${radioButtonColor};
-                            `}
+                            `, animatedInnerRadioButtonStyle]}
 						/>
 					)}
 				</Animated.View>
@@ -106,7 +121,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 					{radioButtonLabel}
 				</Heading>
 			)}
-		</View>
+		</Stack>
 	);
 };
 export default RadioButton;

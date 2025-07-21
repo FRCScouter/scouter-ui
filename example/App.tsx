@@ -5,6 +5,7 @@ import {
 	ScouterButton,
 	ScouterButtonGroup,
 	ScouterCheckbox,
+	ScouterCounter,
 	ScouterHeading,
 	ScouterInput,
 	ScouterRadioButton,
@@ -12,6 +13,7 @@ import {
 	ScouterUIProvider,
 } from "scouter-ui";
 import Button from "scouter-ui/ui/Button";
+import ButtonGroup from "scouter-ui/ui/ButtonGroup";
 
 const App = () => {
 	const [showAlert, setShowAlert] = useState(true);
@@ -24,6 +26,14 @@ const App = () => {
 					<Button>Hello</Button>
 					<Button>Hello</Button>
 				</ScouterStack>
+				<ScouterButtonGroup style={{ marginTop: 10 }} direction="row">
+					<Button>Hello</Button>
+					<Button>Hello</Button>
+					<Button>Hello</Button>
+				</ScouterButtonGroup>
+				<ScouterRadioButton size="3xl" radioButtonLabel="Press me please" />
+				<ScouterCheckbox onPress={() => console.log("I was pressed")} checkboxLabel="Hello" />
+				<ScouterCounter />
 			</View>
 		</ScouterUIProvider>
 	);

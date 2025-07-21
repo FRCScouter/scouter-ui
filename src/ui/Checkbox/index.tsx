@@ -24,6 +24,7 @@ import useStateWithCallback from "../../hooks/useStateCallback";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Heading from "../Heading";
 import { type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import Stack from "../Stack";
 
 interface CheckboxLabelProps {
 	checkboxLabel?: string;
@@ -48,7 +49,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	disabled = false,
 	onPress,
 	size = "xl",
-	color = "blue.700",
+	color = "blue.500",
 	variant = "flat",
 	label = "checkbox-default",
 	useBuiltInState = true,
@@ -80,16 +81,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	}, [onPress, useBuiltInState, checked, setChecked, boxScale, iconScale]);
 
 	return (
-		<View
-			style={css`
-			width: auto;
-			height: auto;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-		`}
-		>
+		<Stack direction="row" gap="sm">
 			<Pressable
 				onPress={onCheckboxPress}
 				disabled={disabled}
@@ -135,7 +127,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 					{checkboxLabel}
 				</Heading>
 			)}
-		</View>
+		</Stack>
 	);
 };
 export default Checkbox;
