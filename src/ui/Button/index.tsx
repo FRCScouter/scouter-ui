@@ -29,7 +29,7 @@ interface ButtonLabelProps {
 	buttonLabelSize?: ScouterSizeKey;
 }
 
-interface ButtonProps extends ButtonLabelProps, PressableProps {
+export interface ButtonProps extends ButtonLabelProps, PressableProps {
 	Icon?: React.ReactElement;
 	color?: ScouterUIThemeColor;
 	children?: React.ReactNode;

@@ -20,67 +20,77 @@ import useResolveColor from "../../hooks/useResolveColor";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Button from "../Button";
 import Heading from "../Heading";
-import Stack from "../Stack";
+import Stack, { type StackProps } from "../Stack";
 
 /**
  * Counter component for incrementing/decrementing a value.
  * Supports imperative getCounter via ref (React 19 style).
  */
-export interface CounterProps {
-    /** Called when the counter value changes */
-    onChange?: (newValue: number) => void;
-    /** Ref for imperative handle (getCounter) */
-    ref?: Ref<{ getCounter: () => number }>;
-    /** Button color */
-    color?: ScouterUIThemeColor;
-    /** Initial value (default: 0) */
-    initialValue?: number;
-    /** Additional props for Stack */
-    [key: string]: any;
+export interface CounterProps extends StackProps {
+	/** Called when the counter value changes */
+	onChange?: (newValue: number) => void;
+	/** Ref for imperative handle (getCounter) */
+	counterRef?: Ref<{ getCounter: () => number }>;
+	/** Button color */
+	color?: ScouterUIThemeColor;
+	/** Initial value (default: 0) */
+	initialValue?: number;
 }
 
-const Counter = ({
-    onChange,
-    ref,
-    color,
-    initialValue = 0,
-    ...stackProps
-}: CounterProps) => {
-    const [counter, setCounter] = useState<number>(initialValue);
-    const iconColor = useResolveColor("white.50");
+const Counter = ({ onChange, counterRef, color, initialValue = 0, ...stackProps }: CounterProps) => {
+	const [counter, setCounter] = useState<number>(initialValue);
+	const iconColor = useResolveColor("white.50");
 
-    useImperativeHandle(ref, () => ({
-        getCounter: () => counter,
-    }), [counter]);
+	useImperativeHandle(
+		counterRef,
+		() => ({
+			getCounter: () => counter,
+		}),
+		[counter],
+	);
 
-    const handleCounterChange = useCallback(
-        (type: "increment" | "decrement") => {
-            const updatedCount = type === "increment" ? counter + 1 : counter - 1;
-            setCounter(updatedCount);
-            onChange?.(updatedCount);
-        },
-        [onChange, counter]
-    );
+	const handleCounterChange = useCallback(
+		(type: "increment" | "decrement") => {
+			const updatedCount = type === "increment" ? counter + 1 : counter - 1;
+			setCounter(updatedCount);
+			onChange?.(updatedCount);
+		},
+		[onChange, counter],
+	);
 
-    return (
-        <Stack direction="row" gap="sm" {...stackProps}>
-            <Button
-                testID="counter-decrement"
-                onPress={() => handleCounterChange("decrement")}
-                color={color}
-                style={{ width: "40%" }}
-                Icon={<AntDesign name="minus" color={iconColor} />}
-            />
-            <Heading>{counter}</Heading>
-            <Button
-                testID="counter-increment"
-                onPress={() => handleCounterChange("increment")}
-                color={color}
-                style={{ width: "40%" }}
-                Icon={<AntDesign name="plus" color={iconColor} />}
-            />
-        </Stack>
-    );
+	return (
+		<Stack
+			direction="row"
+			gap="sm"
+			{...stackProps}
+		>
+			<Button
+				testID="counter-decrement"
+				onPress={() => handleCounterChange("decrement")}
+				color={color}
+				style={{ width: "40%" }}
+				Icon={
+					<AntDesign
+						name="minus"
+						color={iconColor}
+					/>
+				}
+			/>
+			<Heading>{counter}</Heading>
+			<Button
+				testID="counter-increment"
+				onPress={() => handleCounterChange("increment")}
+				color={color}
+				style={{ width: "40%" }}
+				Icon={
+					<AntDesign
+						name="plus"
+						color={iconColor}
+					/>
+				}
+			/>
+		</Stack>
+	);
 };
 
 export default Counter;

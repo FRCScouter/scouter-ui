@@ -16,7 +16,7 @@
 
 import { css } from "@emotion/native";
 import { useCallback, useMemo } from "react";
-import { Pressable, View } from "react-native";
+import { Pressable } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from "react-native-reanimated";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import useResolveColor from "../../hooks/useResolveColor";
@@ -81,7 +81,10 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	}, [onPress, useBuiltInState, checked, setChecked, boxScale, iconScale]);
 
 	return (
-		<Stack direction="row" gap="sm">
+		<Stack
+			direction="row"
+			gap="sm"
+		>
 			<Pressable
 				onPress={onCheckboxPress}
 				disabled={disabled}

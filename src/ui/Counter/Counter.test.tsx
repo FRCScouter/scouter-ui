@@ -20,17 +20,15 @@ import ScouterUIProvider from "../../ScouterUIProvider";
 import Counter from ".";
 
 describe("Counter", () => {
-    it("renders correctly", async () => {
-        const { getByText } = render(
-            <ScouterUIProvider>
-                <Counter />
-            </ScouterUIProvider>,
-        );
+	it("renders correctly", async () => {
+		const { getByText } = render(
+			<ScouterUIProvider>
+				<Counter />
+			</ScouterUIProvider>,
+		);
 
-        await waitFor(() => {
-            expect(getByText("0")).toBeTruthy();
-        });
-    });
-
+		await waitFor(() => {
+			expect(getByText("0")).toBeTruthy();
+		});
+	});
 });
-

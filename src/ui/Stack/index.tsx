@@ -18,7 +18,7 @@ import React, { type Ref, useMemo } from "react";
 import { View, type ViewProps, type ViewStyle } from "react-native";
 import { ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
 
-interface StackProps extends ViewProps {
+export interface StackProps extends ViewProps {
 	direction?: "column" | "row";
 	gap?: ScouterSizeKey;
 	style?: ViewStyle | ViewStyle[] | undefined;

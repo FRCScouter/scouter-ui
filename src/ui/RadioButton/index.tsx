@@ -55,7 +55,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
 	const [checked, setChecked] = useStateWithCallback<boolean>(isChecked);
 	const radioButtonScale = useSharedValue(1);
-	const innerRadioButtonScale = useSharedValue(1)
+	const innerRadioButtonScale = useSharedValue(1);
 
 	const radioButtonColor = useResolveColor(color);
 	const radioButtonSize = ScouterSizeDictionary[size];
@@ -64,19 +64,30 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 		transform: [{ scale: radioButtonScale.value }],
 	}));
 	const animatedInnerRadioButtonStyle = useAnimatedStyle(() => ({
-		transform: [{ scale: innerRadioButtonScale.value }]
-	}))
+		transform: [{ scale: innerRadioButtonScale.value }],
+	}));
 
 	const onRadioButtonPress = useCallback(() => {
 		setChecked(!checked, (newValue) => {
 			onPress?.(newValue);
-			radioButtonScale.value = withSequence(withSpring(0.9, { damping: 5 }), withSpring(1.05, { damping: 5 }), withSpring(1));
-			innerRadioButtonScale.value = withSequence(withSpring(0.9, { damping: 5 }), withSpring(1.05, { damping: 5 }), withSpring(1));
+			radioButtonScale.value = withSequence(
+				withSpring(0.9, { damping: 5 }),
+				withSpring(1.05, { damping: 5 }),
+				withSpring(1),
+			);
+			innerRadioButtonScale.value = withSequence(
+				withSpring(0.9, { damping: 5 }),
+				withSpring(1.05, { damping: 5 }),
+				withSpring(1),
+			);
 		});
 	}, [onPress, setChecked, checked, radioButtonScale, innerRadioButtonScale]);
 
 	return (
-		<Stack direction="row" gap="sm">
+		<Stack
+			direction="row"
+			gap="sm"
+		>
 			<Pressable
 				onPress={onRadioButtonPress}
 				disabled={disabled}
@@ -101,12 +112,15 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 				>
 					{checked && (
 						<Animated.View
-							style={[css`
+							style={[
+								css`
                                 height: 70%;
                                 width: 70%;
                                 border-radius: 100%;
                                 background-color: ${radioButtonColor};
-                            `, animatedInnerRadioButtonStyle]}
+                            `,
+								animatedInnerRadioButtonStyle,
+							]}
 						/>
 					)}
 				</Animated.View>

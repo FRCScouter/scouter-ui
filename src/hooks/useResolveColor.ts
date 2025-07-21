@@ -30,7 +30,11 @@ import type { ScouterUIThemeColor, UITheme } from "../ScouterUi.types";
  * @param platformColors - Optional object for platform-specific overrides, e.g. { ios: 'red', android: 'blue' }
  * @returns The resolved color as a string.
  */
-const useResolveColor = (color: ScouterUIThemeColor | undefined, fallback: string = "black", platformColors?: Partial<Record<typeof Platform.OS, ColorValue>>): string => {
+const useResolveColor = (
+	color: ScouterUIThemeColor | undefined,
+	fallback: string = "black",
+	platformColors?: Partial<Record<typeof Platform.OS, ColorValue>>,
+): string => {
 	const theme = useTheme() as UITheme;
 
 	return useMemo(() => {
@@ -49,7 +53,9 @@ const useResolveColor = (color: ScouterUIThemeColor | undefined, fallback: strin
 		const colorValue = theme.colors[colorBase]?.[resolvedShade];
 		if (!colorValue) {
 			if (typeof __DEV__ !== "undefined" && __DEV__) {
-				console.warn(`[useResolveColor] Shade "${resolvedShade}" for color "${colorBase}" not found in theme. Returning fallback.`);
+				console.warn(
+					`[useResolveColor] Shade "${resolvedShade}" for color "${colorBase}" not found in theme. Returning fallback.`,
+				);
 			}
 			return fallback;
 		}

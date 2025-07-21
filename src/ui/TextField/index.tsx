@@ -34,7 +34,17 @@ interface TextFieldProps {
 	disabled?: boolean;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ label, labelSize = "md", required = false, placeholder = "", onTextChange, value = "", helper, error, disabled = false }) => {
+const TextField: React.FC<TextFieldProps> = ({
+	label,
+	labelSize = "md",
+	required = false,
+	placeholder = "",
+	onTextChange,
+	value = "",
+	helper,
+	error,
+	disabled = false,
+}) => {
 	const theme = useTheme() as UITheme;
 	const hasError = Boolean(error);
 
