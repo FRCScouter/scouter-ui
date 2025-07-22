@@ -16,7 +16,7 @@
 
 export type ScouterSizeKey = "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
 export type ScouterFontWeightKey = "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black";
-const ScouterSizeDictionary: Record<ScouterSizeKey, string> = {
+const ScouterSizeMap: Record<ScouterSizeKey, string> = {
 	"2xl": "30px",
 	"3xl": "36px",
 	"4xl": "48px",
@@ -29,7 +29,7 @@ const ScouterSizeDictionary: Record<ScouterSizeKey, string> = {
 	xl: "24px",
 	xs: "12px",
 };
-const ScouterFontWeight: Record<ScouterFontWeightKey, string> = {
+const ScouterFontWeightMap: Record<ScouterFontWeightKey, string> = {
 	black: "900",
 	bold: "700",
 	extrabold: "800",
@@ -38,4 +38,4 @@ const ScouterFontWeight: Record<ScouterFontWeightKey, string> = {
 	normal: "400",
 	semibold: "600",
 };
-export { ScouterFontWeight, ScouterSizeDictionary };
+export { ScouterFontWeightMap, ScouterSizeMap };

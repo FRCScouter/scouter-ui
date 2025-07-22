@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import { fireEvent, render, waitFor } from "@testing-library/react-native";
-import React from "react";
+import { render, waitFor } from "@testing-library/react-native";
+
 import ScouterUIProvider from "../../ScouterUIProvider";
 import Counter from ".";
 
-describe("Counter", () => {
+describe("Counter component", () => {
 	it("renders correctly", async () => {
 		const { getByText } = render(
 			<ScouterUIProvider>

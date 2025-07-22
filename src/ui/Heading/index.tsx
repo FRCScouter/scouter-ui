@@ -18,7 +18,7 @@ import { css } from "@emotion/native";
 import { Text, type ViewStyle } from "react-native";
 import useResolveColor from "../../hooks/useResolveColor";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
-import { ScouterFontWeight, type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import { type ScouterFontWeightKey, ScouterFontWeightMap, type ScouterSizeKey, ScouterSizeMap } from "../ScouterDictionaries";
 
 interface HeadingProps {
 	size?: ScouterSizeKey;
@@ -33,8 +33,8 @@ const Heading: React.FC<HeadingProps> = ({ size = "md", weight = "normal", color
 
 	const textStyle = css`
 		color: ${resolvedColor};
-		font-size: ${ScouterSizeDictionary[size]};
-		font-weight: ${ScouterFontWeight[weight]};
+		font-size: ${ScouterSizeMap[size]};
+		font-weight: ${ScouterFontWeightMap[weight]};
   `;
 
 	return <Text style={[textStyle, style]}>{children}</Text>;

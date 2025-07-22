@@ -22,7 +22,7 @@ import useResolveColor from "../../hooks/useResolveColor";
 import useStateWithCallback from "../../hooks/useStateCallback";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Heading from "../Heading";
-import { type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import { type ScouterFontWeightKey, type ScouterSizeKey, ScouterSizeMap } from "../ScouterDictionaries";
 import Stack from "../Stack";
 
 interface RadioButtonLabelProps {
@@ -58,7 +58,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 	const innerRadioButtonScale = useSharedValue(1);
 
 	const radioButtonColor = useResolveColor(color);
-	const radioButtonSize = ScouterSizeDictionary[size];
+	const radioButtonSize = ScouterSizeMap[size];
 
 	const animatedRadioButtonStyle = useAnimatedStyle(() => ({
 		transform: [{ scale: radioButtonScale.value }],

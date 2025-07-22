@@ -16,7 +16,7 @@
 
 import React, { type Ref, useMemo } from "react";
 import { View, type ViewProps, type ViewStyle } from "react-native";
-import { ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import { type ScouterSizeKey, ScouterSizeMap } from "../ScouterDictionaries";
 
 export interface StackProps extends ViewProps {
 	direction?: "column" | "row";
@@ -27,7 +27,7 @@ export interface StackProps extends ViewProps {
 }
 
 const Stack: React.FC<StackProps> = ({ direction = "row", gap = "sm", children, style, ref, ...rest }) => {
-	const gapSize = useMemo(() => Number.parseInt(ScouterSizeDictionary[gap], 10), [gap]);
+	const gapSize = useMemo(() => Number.parseInt(ScouterSizeMap[gap], 10), [gap]);
 	const isRow = direction === "row";
 
 	const childrenArray = React.Children.toArray(children);

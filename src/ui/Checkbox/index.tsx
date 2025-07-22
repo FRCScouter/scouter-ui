@@ -23,7 +23,7 @@ import useResolveColor from "../../hooks/useResolveColor";
 import useStateWithCallback from "../../hooks/useStateCallback";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Heading from "../Heading";
-import { type ScouterFontWeightKey, ScouterSizeDictionary, type ScouterSizeKey } from "../ScouterDictionaries";
+import { type ScouterFontWeightKey, type ScouterSizeKey, ScouterSizeMap } from "../ScouterDictionaries";
 import Stack from "../Stack";
 
 interface CheckboxLabelProps {
@@ -62,7 +62,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
 	const [checked, setChecked] = useStateWithCallback<boolean>(isChecked);
 	const checkboxColor = useResolveColor(color);
-	const checkboxSize = ScouterSizeDictionary[size];
+	const checkboxSize = ScouterSizeMap[size];
 	const iconSize = useMemo(() => Number.parseInt(checkboxSize, 10), [checkboxSize]);
 	const iconScale = useSharedValue(1);
 	const boxScale = useSharedValue(1);
