@@ -1,64 +1,67 @@
 {
-	"author": "Lior S. <79309515+DeveloperCron@users.noreply.github.com> (https://github.com/liorshap1)",
-	"bugs": {
-		"url": "https://github.com/liorshap1/scouter-ui/issues"
-	},
-	"dependencies": {
-		"@babel/plugin-transform-logical-assignment-operators": "^7.27.1",
-		"@emotion/css": "^11.13.5",
-		"@emotion/native": "^11.11.0",
-		"@emotion/react": "^11.14.0",
-		"react-native-reanimated": "~3.17.4",
-		"react-native-vector-icons": "^10.2.0"
-	},
-	"description": "FRC Scouter UI",
-	"devDependencies": {
-		"@babel/core": "^7.28.0",
-		"@babel/preset-typescript": "^7.27.1",
-		"@biomejs/biome": "2.1.2",
-		"@testing-library/jest-native": "^5.4.3",
-		"@testing-library/react-native": "^13.2.0",
-		"@types/react": "~19.0.0",
-		"@types/react-native-vector-icons": "^6.4.18",
-		"@types/react-test-renderer": "^19.1.0",
-		"@vitejs/plugin-react": "^4.6.0",
-		"babel-preset-expo": "^13.2.3",
-		"expo": "~53.0.0",
-		"expo-module-scripts": "^4.1.9",
-		"jest": "^29.7.0",
-		"jest-expo": "^53.0.9",
-		"jsdom": "^26.1.0",
-		"react-native": "0.79.1",
-		"react-test-renderer": "^19.1.0",
-		"ts-node": "^10.9.2"
-	},
-	"homepage": "https://github.com/liorshap1/scouter-ui#readme",
-	"keywords": [
-		"react-native",
-		"expo",
-		"scouter-ui",
-		"ScouterUi"
-	],
-	"license": "MIT",
-	"main": "build/index.js",
-	"name": "scouter-ui",
-	"peerDependencies": {
-		"expo": "*",
-		"react": "*",
-		"react-native": "*"
-	},
-	"repository": "https://github.com/liorshap1/scouter-ui",
-	"scripts": {
-		"build": "expo-module build",
-		"clean": "expo-module clean",
-		"expo-module": "expo-module",
-		"lint": "expo-module lint",
-		"open:android": "open -a \"Android Studio\" example/android",
-		"open:ios": "xed example/ios",
-		"prepare": "expo-module prepare",
-		"prepublishOnly": "expo-module prepublishOnly",
-		"test": "jest"
-	},
-	"types": "build/index.d.ts",
-	"version": "0.1.0"
+  "author": "Lior S. <79309515+DeveloperCron@users.noreply.github.com> (https://github.com/liorshap1)",
+  "bugs": {
+    "url": "https://github.com/liorshap1/scouter-ui/issues"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-logical-assignment-operators": "^7.27.1",
+    "@emotion/css": "^11.13.5",
+    "@emotion/native": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-vector-icons": "^10.2.0"
+  },
+  "description": "FRC Scouter UI",
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-typescript": "^7.27.1",
+    "@biomejs/biome": "2.1.2",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.2.0",
+    "@types/react": "~19.0.0",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "@types/react-test-renderer": "^19.1.0",
+    "@vitejs/plugin-react": "^4.6.0",
+    "babel-preset-expo": "^13.2.3",
+    "expo": "~53.0.0",
+    "expo-module-scripts": "^4.1.9",
+    "jest": "^29.7.0",
+    "jest-expo": "^53.0.9",
+    "jsdom": "^26.1.0",
+    "react-native": "0.79.1",
+    "react-test-renderer": "^19.1.0",
+    "ts-node": "^10.9.2"
+  },
+  "homepage": "https://github.com/liorshap1/scouter-ui#readme",
+  "keywords": [
+    "react-native",
+    "expo",
+    "scouter-ui",
+    "ScouterUi"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "name": "scouter-ui",
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "repository": "https://github.com/liorshap1/scouter-ui",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "expo-module": "expo-module",
+    "lint": "expo-module lint",
+    "open:android": "open -a \"Android Studio\" example/android",
+    "open:ios": "xed example/ios",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "test": "jest",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "types": "build/index.d.ts",
+  "version": "0.1.0"
 }
