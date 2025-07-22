@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "ScouterUI docs",
   description: "ScouterUI components documentation",
+  base: "/scouter-ui/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
