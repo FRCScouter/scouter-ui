@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1753695494094" clover="3.2.0">
-  <project timestamp="1753695494094" name="All files">
+<coverage generated="1753696528690" clover="3.2.0">
+  <project timestamp="1753696528690" name="All files">
     <metrics statements="173" coveredstatements="131" conditionals="157" coveredconditionals="105" methods="54" coveredmethods="37" elements="384" coveredelements="273" complexity="0" loc="173" ncloc="173" packages="12" files="17" classes="17"/>
     <package name="src">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -137,22 +137,22 @@
       <metrics statements="16" coveredstatements="11" conditionals="20" coveredconditionals="12" methods="6" coveredmethods="4"/>
       <file name="index.tsx" path="/Users/liorshaposhnikov/Desktop/ScouterUI/scouter-ui/src/ui/Checkbox/index.tsx">
         <metrics statements="16" coveredstatements="11" conditionals="20" coveredconditionals="12" methods="6" coveredmethods="4"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="63" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
         <line num="65" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
         <line num="67" count="1" type="stmt"/>
         <line num="68" count="1" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="75" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="76" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
-        <line num="83" count="1" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.ui.Counter">
