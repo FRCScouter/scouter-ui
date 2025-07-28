@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "scouter-ui": ["../src/index"],
+      "scouter-ui/*": ["../src/*"]
+    }
+  }
+}
