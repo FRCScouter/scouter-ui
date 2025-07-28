@@ -1,19 +1,42 @@
-import type { StyleProp, ViewStyle } from 'react-native';
+/**
+ * Copyright 2025 Lior Shaposhnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import type { StyleProp, ViewStyle } from "react-native";
 
 export type OnLoadEventPayload = {
-  url: string;
+	url: string;
 };
 
 export type ScouterUiModuleEvents = {
-  onChange: (params: ChangeEventPayload) => void;
+	onChange: (params: ChangeEventPayload) => void;
 };
 
 export type ChangeEventPayload = {
-  value: string;
+	value: string;
 };
 
 export type ScouterUiViewProps = {
-  url: string;
-  onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
-  style?: StyleProp<ViewStyle>;
+	url: string;
+	onLoad: (event: { nativeEvent: OnLoadEventPayload }) => void;
+	style?: StyleProp<ViewStyle>;
 };
+
+export type UITheme = {
+	colors: Record<string, Record<number | string, string>>;
+	breakpoints?: Record<string, string>;
+};
+
+export type ScouterUIThemeColor = `${keyof UITheme["colors"]}.${number}`;
