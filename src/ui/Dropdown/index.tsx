@@ -28,7 +28,7 @@ import {
 	type ViewStyle,
 } from "react-native";
 
-export interface DropdownProps<T = any> {
+export interface DropdownProps<T> {
 	data: T[];
 	onSelect: (selectedItem: T, index: number) => void;
 	defaultButtonText?: string;
@@ -98,7 +98,7 @@ const rowTextCss = css`
   color: #333;
 `;
 
-function Dropdown<T = any>({
+function Dropdown<T>({
 	data,
 	onSelect,
 	defaultButtonText = "Select an option",

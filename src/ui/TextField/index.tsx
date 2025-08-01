@@ -28,7 +28,7 @@ interface TextFieldProps extends TextInputProps {
 	labelSize?: "sm" | "md" | "lg";
 	required?: boolean;
 	placeholder?: string;
-	onTextChange: (value: string | number) => void;
+	onTextChange: (value: string) => void;
 	value: string;
 	helper?: string;
 	error?: string;
