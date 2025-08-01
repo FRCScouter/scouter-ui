@@ -17,18 +17,19 @@
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import type React from "react";
+import type { TextInputProps } from "react-native";
 import type { UITheme } from "../../ScouterUi.types";
 import TextFieldError from "./TextFieldError";
 import TextFieldHelper from "./TextFieldHelper";
 import TextFieldLabel from "./TextFieldLabel";
 
-interface TextFieldProps {
+interface TextFieldProps extends TextInputProps {
 	label?: string;
 	labelSize?: "sm" | "md" | "lg";
 	required?: boolean;
 	placeholder?: string;
 	onTextChange: (value: string | number) => void;
-	value: string | number;
+	value: string;
 	helper?: string;
 	error?: string;
 	disabled?: boolean;
@@ -44,6 +45,7 @@ const TextField: React.FC<TextFieldProps> = ({
 	helper,
 	error,
 	disabled = false,
+	...rest
 }) => {
 	const theme = useTheme() as UITheme;
 	const hasError = Boolean(error);
@@ -51,12 +53,12 @@ const TextField: React.FC<TextFieldProps> = ({
 	// Shadow style for React Native
 	const shadowStyle = !disabled
 		? {
-				elevation: 2,
-				shadowColor: "#101e36",
-				shadowOffset: { height: 1, width: 0 },
-				shadowOpacity: 0.08,
-				shadowRadius: 2,
-			}
+			elevation: 2,
+			shadowColor: "#101e36",
+			shadowOffset: { height: 1, width: 0 },
+			shadowOpacity: 0.08,
+			shadowRadius: 2,
+		}
 		: {};
 
 	return (
@@ -73,13 +75,14 @@ const TextField: React.FC<TextFieldProps> = ({
 			<StyledTextInput
 				placeholder={placeholder}
 				onChangeText={onTextChange}
-				value={value?.toString()}
+				value={value}
 				editable={!disabled}
 				theme={theme}
 				hasError={hasError}
 				disabled={disabled}
 				placeholderTextColor={theme.colors.gray[400]}
 				style={shadowStyle}
+				{...rest}
 			/>
 			{helper && <TextFieldHelper labelSize="sm">{helper}</TextFieldHelper>}
 			{error && <TextFieldError labelSize="sm">{error}</TextFieldError>}
