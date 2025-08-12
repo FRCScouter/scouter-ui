@@ -35,6 +35,7 @@ export interface ButtonProps extends ButtonLabelProps, PressableProps {
 	children?: React.ReactNode;
 	style?: StyleProp<ViewStyle>;
 	variant?: "solid" | "outline";
+	radius?: number;
 	disabled?: boolean;
 }
 
@@ -49,6 +50,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		buttonLabelColor,
 		buttonLabelSize,
 		buttonLabelWeight,
+		radius,
 		Icon,
 		...rest
 	} = props;
@@ -80,7 +82,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 					border-width: 2px;
 					padding-vertical: 12px;
 					padding-horizontal: 16px;
-					border-radius: 8px;
+					border-radius: ${radius}px;
 					align-items: center;
 					justify-content: center;
 					display: flex;

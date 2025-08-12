@@ -15,6 +15,7 @@
  */
 
 import { useTheme } from "@emotion/react";
+import type ScouterUITheme from "../ScouterUITheme";
 
-const useScouterTheme = () => useTheme();
+const useScouterTheme = (): typeof ScouterUITheme => useTheme();
 export default useScouterTheme;
