@@ -14,22 +14,34 @@
  * limitations under the License.
  */
 
+
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
-import type React from "react";
+import { useState } from "react";
+
 import type { TextInputProps } from "react-native";
-import type { UITheme } from "../../ScouterUi.types";
+import useResolveColor from "../../hooks/useResolveColor";
+import type { ScouterUIThemeColor } from "../../ScouterUi.types";
+import type { ScouterSizeKey } from "../ScouterDictionaries";
 import TextFieldError from "./TextFieldError";
 import TextFieldHelper from "./TextFieldHelper";
 import TextFieldLabel from "./TextFieldLabel";
 
+type TextFieldStyleOptionsType = {
+	backgroundColor?: ScouterUIThemeColor;
+	borderColor?: ScouterUIThemeColor;
+	activeBorderColor?: ScouterUIThemeColor;
+	placeholderColor?: ScouterUIThemeColor;
+};
+
 interface TextFieldProps extends TextInputProps {
 	label?: string;
-	labelSize?: "sm" | "md" | "lg";
+	textFieldStyleOptions?: TextFieldStyleOptionsType;
+	labelSize?: ScouterSizeKey;
 	required?: boolean;
 	placeholder?: string;
-	onTextChange: (value: string) => void;
-	value: string;
+	onChangeText?: (value: string) => void;
+	value?: string;
 	helper?: string;
 	error?: string;
 	disabled?: boolean;
@@ -37,18 +49,22 @@ interface TextFieldProps extends TextInputProps {
 
 const TextField: React.FC<TextFieldProps> = ({
 	label,
+	textFieldStyleOptions = {},
 	labelSize = "md",
 	required = false,
 	placeholder = "",
-	onTextChange,
+	onChangeText,
 	value = "",
 	helper,
 	error,
 	disabled = false,
+	onFocus: onFocusProp,
+	onBlur: onBlurProp,
 	...rest
 }) => {
-	const theme = useTheme() as UITheme;
+	const theme = useTheme();
 	const hasError = Boolean(error);
+	const [isFocused, setIsFocused] = useState(false);
 
 	// Shadow style for React Native
 	const shadowStyle = !disabled
@@ -61,6 +77,25 @@ const TextField: React.FC<TextFieldProps> = ({
 		}
 		: {};
 
+	const defaultBorder = theme.colors.gray[300];
+	const errorBorder = theme.colors.red[500];
+	const disabledBorder = theme.colors.gray[200];
+	const defaultActive = theme.colors.blue[500];
+
+	const inactiveBorderColor = hasError
+		? errorBorder
+		: disabled
+			? disabledBorder
+			: useResolveColor(textFieldStyleOptions.borderColor, defaultBorder);
+	const activeBorderColor = useResolveColor(textFieldStyleOptions.activeBorderColor, defaultActive);
+	const computedBorderColor = isFocused ? activeBorderColor : inactiveBorderColor;
+	const backgroundColor = useResolveColor(
+		textFieldStyleOptions.backgroundColor,
+		disabled ? theme.colors.gray[100] : theme.colors.white[50],
+	);
+	const textColor = disabled ? theme.colors.gray[400] : theme.colors.gray[900];
+	const placeholderTextColor = useResolveColor(textFieldStyleOptions.placeholderColor, theme.colors.gray[400]);
+
 	return (
 		<FieldContainer>
 			{label && (
@@ -72,18 +107,35 @@ const TextField: React.FC<TextFieldProps> = ({
 					{required && <RequiredMark>*</RequiredMark>}
 				</TextFieldLabel>
 			)}
+
 			<StyledTextInput
 				placeholder={placeholder}
-				onChangeText={onTextChange}
+				onChangeText={onChangeText}
 				value={value}
 				editable={!disabled}
-				theme={theme}
 				hasError={hasError}
 				disabled={disabled}
-				placeholderTextColor={theme.colors.gray[400]}
-				style={shadowStyle}
+				focusBorderColor={activeBorderColor}
+				placeholderTextColor={placeholderTextColor}
+				onFocus={(e) => {
+					setIsFocused(true);
+					onFocusProp?.(e);
+				}}
+				onBlur={(e) => {
+					setIsFocused(false);
+					onBlurProp?.(e);
+				}}
+				style={[
+					shadowStyle,
+					{
+						backgroundColor,
+						borderColor: computedBorderColor,
+						color: textColor,
+					},
+				]}
 				{...rest}
 			/>
+
 			{helper && <TextFieldHelper labelSize="sm">{helper}</TextFieldHelper>}
 			{error && <TextFieldError labelSize="sm">{error}</TextFieldError>}
 		</FieldContainer>
@@ -91,36 +143,32 @@ const TextField: React.FC<TextFieldProps> = ({
 };
 
 const FieldContainer = styled.View`
-    width: 100%;
-    margin-bottom: 18px;
+	width: 100%;
+	margin-bottom: 18px;
 `;
 
 const RequiredMark = styled.Text`
-    color: #e53e3e;
-    margin-left: 2px;
+	color: #e53e3e;
+	margin-left: 2px;
 `;
 
 const StyledTextInput = styled.TextInput<{
-	theme: UITheme;
 	hasError: boolean;
 	disabled: boolean;
+	focusBorderColor: string;
 }>`
-    width: 100%;
-    padding-vertical: 12px;
-    padding-horizontal: 16px;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: ${(props) => (props.hasError ? props.theme.colors.red[500] : props.disabled ? props.theme.colors.gray[200] : props.theme.colors.gray[300])};
-    background-color: ${(props) => (props.disabled ? props.theme.colors.gray[100] : props.theme.colors.white[50])};
-    color: ${(props) => (props.disabled ? props.theme.colors.gray[400] : props.theme.colors.gray[900])};
-    font-size: 16px;
-    margin-top: 6px;
-    margin-bottom: 6px;
+	width: 100%;
+	padding-vertical: 12px;
+	padding-horizontal: 16px;
+	border-radius: 10px;
+	border-width: 2px;
+	font-size: 16px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 
-    /* Focused state (React Native doesn't have :focus, so this is for web only) */
-    &:focus {
-        border-color: ${(props) => (props.hasError ? props.theme.colors.red[600] : props.theme.colors.blue[500])};
-    }
+	&:focus {
+		border-color: ${(props) => props.focusBorderColor};
+	}
 `;
 
 export default TextField;

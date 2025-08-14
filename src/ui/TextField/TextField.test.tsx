@@ -27,7 +27,7 @@ describe("TextField", () => {
 					required
 					placeholder="Enter your email"
 					value=""
-					onTextChange={() => {}}
+					onChangeText={() => { }}
 					helper="We'll never share your email."
 				/>
 			</ScouterUIProvider>,
@@ -43,7 +43,7 @@ describe("TextField", () => {
 				<TextField
 					label="Password"
 					value=""
-					onTextChange={() => {}}
+					onChangeText={() => { }}
 					error="Password is required"
 				/>
 			</ScouterUIProvider>,
@@ -61,7 +61,7 @@ describe("TextField", () => {
 				<TextField
 					placeholder="Type here"
 					value=""
-					onTextChange={onTextChange}
+					onChangeText={onTextChange}
 				/>
 			</ScouterUIProvider>,
 		);
@@ -75,7 +75,7 @@ describe("TextField", () => {
 				<TextField
 					placeholder="Disabled input"
 					value=""
-					onTextChange={() => {}}
+					onChangeText={() => { }}
 					disabled
 				/>
 			</ScouterUIProvider>,
