@@ -31,6 +31,7 @@ type TextFieldStyleOptionsType = {
 	borderColor?: ScouterUIThemeColor;
 	activeBorderColor?: ScouterUIThemeColor;
 	placeholderColor?: ScouterUIThemeColor;
+	textColor?: ScouterUIThemeColor
 };
 
 interface TextFieldProps extends TextInputProps {
@@ -68,12 +69,12 @@ const TextField: React.FC<TextFieldProps> = ({
 	// Shadow style for React Native
 	const shadowStyle = !disabled
 		? {
-				elevation: 2,
-				shadowColor: "#101e36",
-				shadowOffset: { height: 1, width: 0 },
-				shadowOpacity: 0.08,
-				shadowRadius: 2,
-			}
+			elevation: 2,
+			shadowColor: "#101e36",
+			shadowOffset: { height: 1, width: 0 },
+			shadowOpacity: 0.08,
+			shadowRadius: 2,
+		}
 		: {};
 
 	const defaultBorder = theme.colors.gray[300];
@@ -92,7 +93,7 @@ const TextField: React.FC<TextFieldProps> = ({
 		textFieldStyleOptions.backgroundColor,
 		disabled ? theme.colors.gray[100] : theme.colors.white[50],
 	);
-	const textColor = disabled ? theme.colors.gray[400] : theme.colors.gray[900];
+	const textColor = disabled ? theme.colors.gray[400] : useResolveColor(textFieldStyleOptions.textColor, theme.colors.gray[900]);
 	const placeholderTextColor = useResolveColor(textFieldStyleOptions.placeholderColor, theme.colors.gray[400]);
 
 	return (
