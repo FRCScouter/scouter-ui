@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
@@ -69,12 +68,12 @@ const TextField: React.FC<TextFieldProps> = ({
 	// Shadow style for React Native
 	const shadowStyle = !disabled
 		? {
-			elevation: 2,
-			shadowColor: "#101e36",
-			shadowOffset: { height: 1, width: 0 },
-			shadowOpacity: 0.08,
-			shadowRadius: 2,
-		}
+				elevation: 2,
+				shadowColor: "#101e36",
+				shadowOffset: { height: 1, width: 0 },
+				shadowOpacity: 0.08,
+				shadowRadius: 2,
+			}
 		: {};
 
 	const defaultBorder = theme.colors.gray[300];
