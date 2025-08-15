@@ -39,7 +39,7 @@ type TextFieldStyleOptionsType = {
 type TextFieldToggleOptionsType = {
 	passwordToggleColor?: ScouterUIThemeColor;
 	passwordToggleSize?: number;
-}
+};
 
 type TextFieldHelperOptionsType = Omit<TextFieldHelperProps, "children">;
 type TextFieldErrorOptionsType = Omit<TextFieldErrorProps, "children">;
@@ -78,7 +78,7 @@ const TextField: React.FC<TextFieldProps> = ({
 	textFieldErrorOptions = {},
 	textFieldToggleOptions = {
 		passwordToggleColor: "gray.500",
-		passwordToggleSize: 12
+		passwordToggleSize: 12,
 	},
 	...rest
 }) => {
@@ -99,7 +99,7 @@ const TextField: React.FC<TextFieldProps> = ({
 		textFieldStyleOptions.backgroundColor,
 		disabled ? theme.colors.gray[100] : theme.colors.white[50],
 	);
-	const resolvedPasswordToggleColor = useResolveColor(textFieldToggleOptions.passwordToggleColor)
+	const resolvedPasswordToggleColor = useResolveColor(textFieldToggleOptions.passwordToggleColor);
 	const resolvedTextColor = useResolveColor(textFieldStyleOptions.textColor, theme.colors.gray[900]);
 	const resolvedPlaceholderColor = useResolveColor(textFieldStyleOptions.placeholderColor, theme.colors.gray[400]);
 	const inactiveBorderColor = isErrorPresent ? errorBorderColor : disabled ? disabledBorderColor : resolvedBorderColor;
@@ -108,17 +108,17 @@ const TextField: React.FC<TextFieldProps> = ({
 	const finalTextColor = disabled ? theme.colors.gray[400] : resolvedTextColor;
 	const inputShadowStyle = !disabled
 		? {
-			elevation: 2,
-			shadowColor: "#101e36",
-			shadowOffset: { height: 1, width: 0 },
-			shadowOpacity: 0.08,
-			shadowRadius: 2,
-		}
+				elevation: 2,
+				shadowColor: "#101e36",
+				shadowOffset: { height: 1, width: 0 },
+				shadowOpacity: 0.08,
+				shadowRadius: 2,
+			}
 		: {};
 
 	const togglePasswordVisibility = useCallback(() => {
 		setSecureEntry((prev) => !prev);
-	}, [])
+	}, []);
 
 	return (
 		<FieldContainer>
@@ -163,7 +163,12 @@ const TextField: React.FC<TextFieldProps> = ({
 				/>
 
 				{isPassword && (
-					<Feather name={isSecureEntry ? "eye" : "eye-off"} onPress={togglePasswordVisibility} color={resolvedPasswordToggleColor} size={textFieldToggleOptions.passwordToggleSize} />
+					<Feather
+						name={isSecureEntry ? "eye" : "eye-off"}
+						onPress={togglePasswordVisibility}
+						color={resolvedPasswordToggleColor}
+						size={textFieldToggleOptions.passwordToggleSize}
+					/>
 				)}
 			</Stack>
 

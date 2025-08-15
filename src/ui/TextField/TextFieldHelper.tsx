@@ -26,7 +26,12 @@ export interface TextFieldHelperProps {
 }
 
 const TextFieldHelper: React.FC<TextFieldHelperProps> = (props) => {
-	const { children, textFieldHelperFontSize = "lg", textFieldHelperTextColor = "white.50", textFieldHelperFontWeight = "medium" } = props
+	const {
+		children,
+		textFieldHelperFontSize = "lg",
+		textFieldHelperTextColor = "white.50",
+		textFieldHelperFontWeight = "medium",
+	} = props;
 	return (
 		<Heading
 			size={textFieldHelperFontSize}

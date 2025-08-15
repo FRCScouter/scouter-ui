@@ -16,7 +16,7 @@
 
 import { css } from "@emotion/native";
 import type React from "react";
-import { useCallback, useMemo } from "react";
+import { useCallback, useId, useMemo } from "react";
 import { Pressable } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from "react-native-reanimated";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
@@ -67,6 +67,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	const iconSize = useMemo(() => Number.parseInt(checkboxSize, 10), [checkboxSize]);
 	const iconScale = useSharedValue(1);
 	const boxScale = useSharedValue(1);
+	const id = useId();
 
 	const animatedIconStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconScale.value }] }));
 	const animatedBoxStyle = useAnimatedStyle(() => ({ transform: [{ scale: boxScale.value }] }));
@@ -89,7 +90,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 			<Pressable
 				onPress={onCheckboxPress}
 				disabled={disabled}
-				id="pressable"
+				id={id}
 				testID={label}
 				accessibilityLabel={label}
 				aria-checked={checked}

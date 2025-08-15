@@ -27,8 +27,8 @@ export interface TextFieldErrorProps {
 }
 
 const TextFieldError: React.FC<TextFieldErrorProps> = (props) => {
-	const { children, textFieldErrorTextSize = "sm", textFieldErrorFontWeight = "medium" } = props
-	const theme = useTheme()
+	const { children, textFieldErrorTextSize = "sm", textFieldErrorFontWeight = "medium" } = props;
+	const theme = useTheme();
 
 	return (
 		<Container>
