@@ -17,17 +17,19 @@
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import type { UITheme } from "../../ScouterUi.types";
 import Heading from "../Heading";
-import type { ScouterSizeKey } from "../ScouterDictionaries";
+import type { ScouterFontWeightKey, ScouterSizeKey } from "../ScouterDictionaries";
 
-interface TextFieldErrorProps {
-	children: React.ReactNode;
-	labelSize: ScouterSizeKey;
+export interface TextFieldErrorProps {
+	children?: React.ReactNode;
+	textFieldErrorTextSize?: ScouterSizeKey;
+	textFieldErrorFontWeight?: ScouterFontWeightKey;
 }
 
-const TextFieldError: React.FC<TextFieldErrorProps> = ({ children, labelSize }) => {
-	const theme = useTheme() as UITheme;
+const TextFieldError: React.FC<TextFieldErrorProps> = (props) => {
+	const { children, textFieldErrorTextSize = "sm", textFieldErrorFontWeight = "medium" } = props
+	const theme = useTheme()
+
 	return (
 		<Container>
 			<MaterialIcons
@@ -36,8 +38,8 @@ const TextFieldError: React.FC<TextFieldErrorProps> = ({ children, labelSize }) 
 				color={theme.colors.red[500]}
 			/>
 			<Heading
-				size={labelSize}
-				weight="medium"
+				size={textFieldErrorTextSize}
+				weight={textFieldErrorFontWeight}
 				color={"red.500"}
 			>
 				{children}

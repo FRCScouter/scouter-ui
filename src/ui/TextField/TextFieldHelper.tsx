@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
+import type { ScouterUIThemeColor } from "../../ScouterUi.types";
 import Heading from "../Heading";
-import type { ScouterSizeKey } from "../ScouterDictionaries";
+import type { ScouterFontWeightKey, ScouterSizeKey } from "../ScouterDictionaries";
 
-interface TextFieldHelperProps {
+export interface TextFieldHelperProps {
 	children: React.ReactNode;
-	labelSize: ScouterSizeKey;
+	textFieldHelperFontSize?: ScouterSizeKey;
+	textFieldHelperTextColor?: ScouterUIThemeColor;
+	textFieldHelperFontWeight?: ScouterFontWeightKey;
 }
 
-const TextFieldHelper: React.FC<TextFieldHelperProps> = ({ children, labelSize }) => {
+const TextFieldHelper: React.FC<TextFieldHelperProps> = (props) => {
+	const { children, textFieldHelperFontSize = "lg", textFieldHelperTextColor = "white.50", textFieldHelperFontWeight = "medium" } = props
 	return (
 		<Heading
-			size={labelSize}
-			color={"gray.500"}
+			size={textFieldHelperFontSize}
+			color={textFieldHelperTextColor}
+			weight={textFieldHelperFontWeight}
 		>
 			{children}
 		</Heading>
