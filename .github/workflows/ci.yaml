@@ -17,5 +17,5 @@ jobs:
         with:
           node-version: "20"
 
-      - run: npm install
-      - run: npm test # Run unit tests
+      - run: bun install
+      - run: bun run test # Run unit tests
