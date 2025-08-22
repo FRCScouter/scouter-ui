@@ -50,7 +50,6 @@ const Stack: React.FC<StackProps> = ({ direction = "row", gap = "sm", children, 
 				style: mergedStyle,
 			});
 		}
-		// If not a valid React element, return as is
 		return child;
 	});
 
@@ -58,7 +57,7 @@ const Stack: React.FC<StackProps> = ({ direction = "row", gap = "sm", children, 
 		<View
 			{...rest}
 			ref={ref}
-			style={[{ alignItems: "center", flexDirection: direction, justifyContent: "center" }, style]}
+			style={[{ alignItems: "center", display: "flex", flexDirection: direction, justifyContent: "center" }, style]}
 		>
 			{spacedChildren}
 		</View>

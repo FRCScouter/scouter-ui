@@ -18,11 +18,11 @@ export default function App() {
         <View style={{ width: "90%" }}>
           <ScouterInput
             autoCapitalize="none"
-            textFieldStyleOptions={{ placeholderColor: "gray.300", textColor: "white.50" }}
+            textFieldStyleOptions={{ placeholderColor: "gray.300", textColor: "black.50" }}
             textFieldToggleOptions={{ passwordToggleSize: 15 }}
             inputMode="email"
             placeholder="Enter your email"
-
+            value='Hello'
           />
           <ScouterInput
             autoCapitalize="none"
