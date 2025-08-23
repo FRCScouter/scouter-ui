@@ -22,8 +22,8 @@ import { useCallback, useState } from "react";
 import type { TextInputProps } from "react-native";
 import useResolveColor from "../../hooks/useResolveColor";
 import type { ScouterUIThemeColor } from "../../ScouterUi.types";
+import { ScouterStack } from "..";
 import type { ScouterSizeKey } from "../ScouterDictionaries";
-import Stack from "../Stack";
 import TextFieldError, { type TextFieldErrorProps } from "./TextFieldError";
 import TextFieldHelper, { type TextFieldHelperProps } from "./TextFieldHelper";
 import TextFieldLabel from "./TextFieldLabel";
@@ -132,7 +132,7 @@ const TextField: React.FC<TextFieldProps> = ({
 				</TextFieldLabel>
 			)}
 
-			<Stack direction="row">
+			<ScouterStack direction="row">
 				<StyledTextInput
 					placeholder={placeholder}
 					onChangeText={onChangeText}
@@ -157,7 +157,6 @@ const TextField: React.FC<TextFieldProps> = ({
 							backgroundColor: resolvedBackgroundColor,
 							borderColor: finalBorderColor,
 							color: finalTextColor,
-							paddingRight: 40,
 						},
 					]}
 					{...rest}
@@ -172,12 +171,10 @@ const TextField: React.FC<TextFieldProps> = ({
 						style={{
 							position: "absolute",
 							right: 10,
-							top: "50%",
-							transform: [{ translateY: -(textFieldToggleOptions?.passwordToggleSize ?? 12) / 2 }],
 						}}
 					/>
 				)}
-			</Stack>
+			</ScouterStack>
 
 			{helper && <TextFieldHelper {...textFieldHelperOptions}>{helper}</TextFieldHelper>}
 			{error && <TextFieldError {...textFieldStyleOptions}>{error}</TextFieldError>}

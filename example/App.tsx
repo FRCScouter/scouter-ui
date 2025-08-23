@@ -1,6 +1,7 @@
 import { useEvent } from 'expo';
 import {
-  ScouterButton, ScouterUIProvider, ScouterInput
+  ScouterButton, ScouterUIProvider, ScouterInput,
+  ScouterStack
 } from 'scouter-ui';
 import { SafeAreaView, View } from 'react-native';
 
@@ -18,8 +19,8 @@ export default function App() {
         <View style={{ width: "90%" }}>
           <ScouterInput
             autoCapitalize="none"
-            textFieldStyleOptions={{ placeholderColor: "gray.300", textColor: "black.50" }}
-            textFieldToggleOptions={{ passwordToggleSize: 15 }}
+            textFieldStyleOptions={{ placeholderColor: "gray.300", textColor: "white.50" }}
+            textFieldToggleOptions={{ passwordToggleSize: 20 }}
             inputMode="email"
             placeholder="Enter your email"
             value='Hello'
@@ -30,9 +31,10 @@ export default function App() {
             textFieldToggleOptions={{ passwordToggleSize: 20 }}
             inputMode="email"
             placeholder="Enter your email"
+            value='Hello'
             isPassword
           />
-          <ScouterButton>Hello!</ScouterButton>
+          <ScouterButton style={{ width: "100%" }}>Hello!</ScouterButton>
         </View>
       </ScouterUIProvider>
     </SafeAreaView>

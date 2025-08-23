@@ -45,6 +45,7 @@ const Stack: React.FC<StackProps> = ({ direction = "row", gap = "sm", children, 
 		if (React.isValidElement(child)) {
 			const element = child as React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 			const existingStyle = element.props?.style;
+			console.log(existingStyle)
 			const mergedStyle = existingStyle ? [existingStyle, childStyle] : [childStyle];
 			return React.cloneElement(element, {
 				style: mergedStyle,
