@@ -108,12 +108,12 @@ const TextField: React.FC<TextFieldProps> = ({
 	const finalTextColor = disabled ? theme.colors.gray[400] : resolvedTextColor;
 	const inputShadowStyle = !disabled
 		? {
-			elevation: 2,
-			shadowColor: "#101e36",
-			shadowOffset: { height: 1, width: 0 },
-			shadowOpacity: 0.08,
-			shadowRadius: 2,
-		}
+				elevation: 2,
+				shadowColor: "#101e36",
+				shadowOffset: { height: 1, width: 0 },
+				shadowOpacity: 0.08,
+				shadowRadius: 2,
+			}
 		: {};
 
 	const togglePasswordVisibility = useCallback(() => {

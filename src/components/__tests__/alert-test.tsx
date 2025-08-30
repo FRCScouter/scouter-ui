@@ -25,7 +25,7 @@ it("renders correctly the alert", async () => {
 				alertRole="info"
 				label="Hello"
 				duration={5}
-				onRemove={() => { }}
+				onRemove={() => {}}
 			/>
 		</ScouterUIProvider>,
 	);

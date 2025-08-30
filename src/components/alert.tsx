@@ -113,7 +113,7 @@ const Alert: React.FC<AlertProps> = ({ label = "This is alert", duration = 3000,
 	);
 };
 
-const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: string }>`
+const AlertContainer = styled(View)<{ backgroundColor: string; borderColor: string }>`
     border-radius: 8px;
     background-color: ${(props) => props.backgroundColor};
     border-width: 1px;
@@ -128,7 +128,7 @@ const AlertContainer = styled(View) <{ backgroundColor: string; borderColor: str
     bottom: 20px;
 `;
 
-const AlertText = styled(Text) <{ textColor: string }>`
+const AlertText = styled(Text)<{ textColor: string }>`
     font-size: 16px;
     font-weight: 600;
     color: ${(props) => props.textColor}

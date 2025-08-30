@@ -65,8 +65,7 @@
     "react-native-worklets": "^0.4.2",
     "react-native-worklets-core": "^1.6.2",
     "ts-jest": "^29.4.1",
-    "ts-node": "^10.9.2",
-    "vitepress": "2.0.0-alpha.12"
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "@emotion/css": "^11.13.5",
