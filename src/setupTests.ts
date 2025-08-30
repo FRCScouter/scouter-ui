@@ -5,14 +5,14 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: Jest is broken */
 
 // Global test configuration
-global.__DEV__ = true;
+// global.__DEV__ = true;
 
-// Mock console methods to reduce noise in tests
-global.console = {
-	...console,
-	error: jest.fn(),
-	warn: jest.fn(),
-};
+// // Mock console methods to reduce noise in tests
+// global.console = {
+// 	...console,
+// 	error: jest.fn(),
+// 	warn: jest.fn(),
+// };
 
 // Mock React Native Reanimated
 jest.mock("react-native-reanimated", () => {
