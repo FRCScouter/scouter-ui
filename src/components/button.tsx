@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		buttonLabelColor,
 		buttonLabelSize,
 		buttonLabelWeight,
-		radius,
+		radius = 12,
 		Icon,
 		...rest
 	} = props;
@@ -76,18 +76,18 @@ const Button: React.FC<ButtonProps> = (props) => {
 				buttonScale.value = withSpring(1, { stiffness: 200 });
 			}}
 			style={[
-				css`
-					background-color: ${backgroundColor};
-					border-color: ${borderColor};
-					border-width: 2px;
-					padding-vertical: 12px;
-					padding-horizontal: 16px;
-					width: 100%;
-					border-radius: ${radius}px;
-					align-items: center;
-					justify-content: center;
-					display: flex;
-				`,
+				css({
+					alignItems: "center",
+					backgroundColor,
+					borderColor,
+					borderRadius: radius,
+					borderWidth: 2,
+					display: "flex",
+					justifyContent: "center",
+					paddingHorizontal: 16,
+					paddingVertical: 12,
+					width: "100%",
+				}),
 				animatedButtonStyle,
 				style,
 			]}

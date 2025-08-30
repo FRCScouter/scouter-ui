@@ -1,7 +1,6 @@
 import { useEvent } from 'expo';
 import {
-  ScouterButton, ScouterUIProvider, ScouterInput,
-  ScouterStack
+  ScouterButton, ScouterUIProvider, ScouterInput
 } from 'scouter-ui';
 import { SafeAreaView, View } from 'react-native';
 
@@ -34,10 +33,10 @@ export default function App() {
             value='Hello'
             isPassword
           />
-          <ScouterButton style={{ width: "100%" }}>Hello!</ScouterButton>
+          <ScouterButton radius={15}>Hello!</ScouterButton>
         </View>
       </ScouterUIProvider>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 
