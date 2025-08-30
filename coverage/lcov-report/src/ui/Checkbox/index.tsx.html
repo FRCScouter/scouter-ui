@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/19</span>
+                <span class='fraction'>13/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">63.15% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/20</span>
+                <span class='fraction'>12/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.75% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/16</span>
+                <span class='fraction'>12/17</span>
             </div>
         
             
@@ -200,7 +200,8 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,6 +264,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -355,7 +357,7 @@
 &nbsp;
 import { css } from "@emotion/native";
 import type React from "react";
-import { useCallback, useMemo } from "react";
+import { useCallback, useId, useMemo } from "react";
 import { Pressable } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from "react-native-reanimated";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
@@ -406,12 +408,13 @@ const Checkbox: React.FC&lt;CheckboxProps&gt; = ({
 	const iconSize = useMemo(() =&gt; Number.parseInt(checkboxSize, 10), [checkboxSize]);
 	const iconScale = useSharedValue(1);
 	const boxScale = useSharedValue(1);
+	const id = useId();
 &nbsp;
-	const animatedIconStyle = useAnimatedStyle(() =&gt; ({ transform: [{ scale: iconScale.value }] }));
-	const animatedBoxStyle = useAnimatedStyle(() =&gt; ({ transform: [{ scale: boxScale.value }] }));
+	const animatedIconStyle = useAnimatedStyle(<span class="fstat-no" title="function not covered" >() =</span>&gt; (<span class="cstat-no" title="statement not covered" >{ transform: [{ scale: iconScale.value }] })</span>);
+	const animatedBoxStyle = useAnimatedStyle(<span class="fstat-no" title="function not covered" >() =</span>&gt; (<span class="cstat-no" title="statement not covered" >{ transform: [{ scale: boxScale.value }] })</span>);
 &nbsp;
-	const onCheckboxPress = useCallback(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >		if (useBuiltInState) {</span>
+	const onCheckboxPress = useCallback(<span class="fstat-no" title="function not covered" >() =</span>&gt; {
+<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (useBuiltInState) {</span>
 <span class="cstat-no" title="statement not covered" >			setChecked(!checked, <span class="fstat-no" title="function not covered" >(n</span>ewCheckedValue) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >				onPress?.(newCheckedValue);</span>
 <span class="cstat-no" title="statement not covered" >				iconScale.value = withSequence(withSpring(1.2, { damping: 5 }), withSpring(1));</span>
@@ -428,7 +431,7 @@ const Checkbox: React.FC&lt;CheckboxProps&gt; = ({
 			&lt;Pressable
 				onPress={onCheckboxPress}
 				disabled={disabled}
-				id="pressable"
+				id={id}
 				testID={label}
 				accessibilityLabel={label}
 				aria-checked={checked}
@@ -481,7 +484,7 @@ export default Checkbox;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-15T07:17:29.468Z
+                at 2025-08-30T12:07:28.244Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

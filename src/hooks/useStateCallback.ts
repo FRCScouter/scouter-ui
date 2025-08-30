@@ -27,7 +27,7 @@ import { type SetStateAction, useCallback, useEffect, useRef, useState } from "r
  *
  * @example
  * const [checked, setChecked] = useStateWithCallback<boolean>(false);
- * setChecked(true, (newChecked) => { console.log(newChecked); });
+ * setChecked(true, (newChecked) => { console.log('new value:', newChecked); });
  */
 type Callback<T> = (value: T) => void;
 type DispatchWithCallback<T> = (value: SetStateAction<T>, callback?: Callback<T>) => void;

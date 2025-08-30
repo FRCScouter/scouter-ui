@@ -1,9 +1,7 @@
 module.exports = (api) => {
-	api.cache(false);
+	api.cache(true);
 	return {
-		presets: ["babel-preset-expo"],
-		plugins: ["react-native-worklets/plugin"],
+		presets: ["babel-preset-expo", '@babel/preset-typescript'],
 	};
 };
 
-// "@babel/plugin-transform-logical-assignment-operators
