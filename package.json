@@ -68,7 +68,7 @@
     "@emotion/css": "^11.13.5",
     "@emotion/native": "^11.11.0",
     "@emotion/react": "^11.14.0",
-    "@expo/vector-icons": "^14.1.0",
+    "@expo/vector-icons": "^15.0.2",
     "@types/node": "^24.3.0"
   }
 }
