@@ -33,7 +33,7 @@ export default function App() {
             value='Hello'
             isPassword
           />
-          <ScouterButton radius={15}>Hello!</ScouterButton>
+          <ScouterButton radius={20}>Hello!</ScouterButton>
         </View>
       </ScouterUIProvider>
     </SafeAreaView >

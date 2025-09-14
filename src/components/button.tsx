@@ -35,7 +35,7 @@ export interface ButtonProps extends ButtonLabelProps, PressableProps {
 	children?: React.ReactNode;
 	style?: StyleProp<ViewStyle>;
 	variant?: "solid" | "outline";
-	radius?: number;
+	radius?: string;
 	disabled?: boolean;
 }
 
@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		buttonLabelColor,
 		buttonLabelSize,
 		buttonLabelWeight,
-		radius = 12,
+		radius = "12",
 		Icon,
 		...rest
 	} = props;
@@ -58,7 +58,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 	const resolvedColor = useResolveColor(color);
 	const backgroundColor = variant === "solid" ? (disabled ? "#ccc" : resolvedColor) : "transparent";
 	const borderColor = variant === "outline" ? (disabled ? "#aaa" : resolvedColor) : "transparent";
-	const textColor = variant === "solid" ? "white.50" : disabled ? "gray.200" : buttonLabelColor;
+	const textColor = buttonLabelColor || "white.50"
 	const buttonScale = useSharedValue(1);
 
 	const animatedButtonStyle = useAnimatedStyle(() => ({
