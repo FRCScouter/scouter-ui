@@ -58,7 +58,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 	const resolvedColor = useResolveColor(color);
 	const backgroundColor = variant === "solid" ? (disabled ? "#ccc" : resolvedColor) : "transparent";
 	const borderColor = variant === "outline" ? (disabled ? "#aaa" : resolvedColor) : "transparent";
-	const textColor = buttonLabelColor || "white.50"
+	const textColor = buttonLabelColor || "white.50";
 	const buttonScale = useSharedValue(1);
 
 	const animatedButtonStyle = useAnimatedStyle(() => ({
