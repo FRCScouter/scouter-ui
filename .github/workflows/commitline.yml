@@ -20,7 +20,7 @@ jobs:
           cache: npm
 
       - name: Install commitlint
-        run: npm install --save-dev @commitlint/cli @commitlint/config-conventional
+        run: npm install --save-dev @commitlint/cli @commitlint/config-conventional --force
 
       - name: Print versions
         run: |
